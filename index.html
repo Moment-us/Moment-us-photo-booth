@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Moment Us Photo Booth</title>
 
 <style>
@@ -14,449 +13,354 @@
 }
 
 body{
-  font-family:Arial, Helvetica, sans-serif;
-  background:#f7f2eb;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f8f4ef;
   color:#171717;
   min-height:100vh;
 }
 
 button{
-  font:inherit;
+  border:0;
   cursor:pointer;
+  font:inherit;
 }
 
 .screen{
   display:none;
   min-height:100vh;
+  padding:24px;
 }
 
 .screen.active{
-  display:block;
+  display:flex;
 }
 
-/* ================= LANDING ================= */
-
-.nav{
+.wrap{
   width:100%;
-  padding:22px 6%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  max-width:1050px;
+  margin:auto;
+}
+
+.card{
+  background:#fff;
+  border:1px solid #e8e0d8;
+  border-radius:28px;
+  padding:28px;
+  box-shadow:0 12px 40px rgba(0,0,0,.06);
 }
 
 .logo{
-  font-size:20px;
+  font-size:15px;
   font-weight:800;
-  letter-spacing:-1px;
-}
-
-.logo span{
-  color:#e94d72;
-}
-
-.nav-small{
-  font-size:12px;
-  letter-spacing:1px;
+  letter-spacing:2px;
   text-transform:uppercase;
+  margin-bottom:35px;
 }
 
 .hero{
-  min-height:78vh;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-  gap:50px;
-  padding:50px 8%;
-}
-
-.hero-text small{
-  display:inline-block;
-  border:1px solid #222;
-  padding:8px 13px;
-  border-radius:30px;
-  font-size:11px;
-  letter-spacing:1.5px;
-  margin-bottom:25px;
+  text-align:center;
+  padding:45px 20px;
 }
 
 .hero h1{
-  font-family:Georgia,serif;
-  font-size:clamp(50px,7vw,95px);
-  line-height:.9;
-  letter-spacing:-5px;
-  max-width:700px;
-}
-
-.hero h1 span{
-  color:#e94d72;
+  font-size:clamp(42px,8vw,82px);
+  line-height:.95;
+  letter-spacing:-4px;
+  margin-bottom:22px;
 }
 
 .hero p{
-  margin-top:28px;
-  max-width:480px;
-  font-size:17px;
+  max-width:650px;
+  margin:0 auto 30px;
+  color:#666;
+  font-size:18px;
   line-height:1.6;
-  color:#555;
 }
 
-.hero-buttons{
-  display:flex;
-  gap:12px;
-  margin-top:30px;
-  flex-wrap:wrap;
+.primary{
+  background:#171717;
+  color:white;
+  padding:16px 28px;
+  border-radius:999px;
+  font-weight:800;
 }
 
-.primary-btn,
-.secondary-btn{
-  border-radius:50px;
-  padding:16px 25px;
-  border:1px solid #171717;
+.secondary{
+  background:#f0ebe6;
+  color:#171717;
+  padding:14px 22px;
+  border-radius:999px;
   font-weight:700;
 }
 
-.primary-btn{
-  background:#171717;
-  color:white;
+.danger{
+  background:#f6dddd;
+  color:#9d1c1c;
+  padding:14px 22px;
+  border-radius:999px;
+  font-weight:800;
 }
 
-.secondary-btn{
-  background:transparent;
-  color:#171717;
+.small-note{
+  color:#777;
+  font-size:13px;
+  margin-top:18px;
 }
 
-.primary-btn:hover{
-  transform:translateY(-2px);
+h2{
+  font-size:34px;
+  margin-bottom:10px;
 }
 
-.preview{
-  display:flex;
-  justify-content:center;
+.subtitle{
+  color:#777;
+  margin-bottom:25px;
 }
 
-.fake-booth{
-  width:min(330px,90vw);
-  background:white;
-  padding:18px;
-  box-shadow:15px 18px 0 #e7d9cf;
-  transform:rotate(2deg);
-}
-
-.fake-screen{
-  aspect-ratio:4/5;
-  background:#ddd;
+.room-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:3px;
-  overflow:hidden;
+  gap:18px;
 }
 
-.fake-person{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:70px;
-  background:#eee7df;
+.room-box{
+  border:1px solid #e5ddd5;
+  border-radius:22px;
+  padding:24px;
 }
 
-.fake-caption{
-  text-align:center;
-  padding:15px 5px 3px;
-  font-size:11px;
-  letter-spacing:2px;
-}
-
-/* ================= GENERAL ================= */
-
-.center-page{
-  min-height:100vh;
-  padding:30px 20px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-.panel{
-  width:min(700px,100%);
-  background:white;
-  padding:35px;
-  border:1px solid #ddd;
-  box-shadow:10px 12px 0 #e8ddd4;
-}
-
-.panel h2{
-  font-family:Georgia,serif;
-  font-size:42px;
-  margin-bottom:12px;
-}
-
-.panel p{
-  color:#666;
-  line-height:1.6;
-}
-
-.back-btn{
-  border:0;
-  background:none;
-  margin-bottom:25px;
-  color:#666;
-  cursor:pointer;
-}
-
-.room-actions{
-  margin-top:30px;
-}
-
-.code{
-  font-size:44px;
-  font-weight:900;
-  letter-spacing:8px;
-  text-align:center;
-  padding:22px;
-  margin:25px 0;
-  background:#f5eee8;
-}
-
-.status{
-  text-align:center;
-  margin-top:15px;
-  color:#555;
-}
-
-.input{
-  width:100%;
-  padding:17px;
-  border:1px solid #bbb;
-  border-radius:8px;
-  font-size:18px;
-  text-transform:uppercase;
-  letter-spacing:3px;
-  margin:20px 0;
-}
-
-.full-btn{
-  width:100%;
-  padding:16px;
-  border-radius:50px;
-  border:1px solid #171717;
-  background:#171717;
-  color:white;
-  font-weight:bold;
-}
-
-/* ================= CAMERA ================= */
-
-.camera-page{
-  background:#111;
-  color:white;
-  min-height:100vh;
-  padding:20px;
-}
-
-.camera-top{
-  max-width:1000px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 0 20px;
-}
-
-.photo-counter{
-  font-size:13px;
-  letter-spacing:2px;
-  font-weight:bold;
-}
-
-.motion-label{
-  font-size:11px;
-  color:#bbb;
-  letter-spacing:1px;
-}
-
-.camera-box{
-  max-width:900px;
-  margin:auto;
-  position:relative;
-  background:#222;
-  overflow:hidden;
-  border-radius:15px;
-  aspect-ratio:16/10;
-}
-
-#video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transform:scaleX(-1);
-  display:block;
-}
-
-.camera-placeholder{
-  position:absolute;
-  inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  color:#aaa;
-}
-
-.countdown{
-  position:absolute;
-  inset:0;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  font-size:130px;
-  font-weight:900;
-  background:rgba(0,0,0,.25);
-  z-index:5;
-}
-
-.camera-controls{
-  max-width:900px;
-  margin:25px auto 0;
-  display:flex;
-  justify-content:center;
-}
-
-.capture-btn{
-  width:78px;
-  height:78px;
-  border-radius:50%;
-  border:7px solid white;
-  background:#e94d72;
-  box-shadow:0 0 0 4px #555;
-}
-
-/* ================= REVIEW ================= */
-
-.review-page{
-  min-height:100vh;
-  padding:30px 20px;
-  background:#eee8e1;
-}
-
-.review-wrap{
-  width:min(700px,100%);
-  margin:auto;
-  text-align:center;
-}
-
-.review-wrap h2{
-  font-family:Georgia,serif;
-  font-size:42px;
+.room-box h3{
   margin-bottom:8px;
 }
 
-.review-photo-box{
-  background:white;
-  padding:15px;
-  margin:25px auto;
-  width:min(480px,100%);
-  box-shadow:8px 10px 0 #d9cec5;
-}
-
-#capturedPhoto{
+input{
   width:100%;
-  display:block;
-  aspect-ratio:4/3;
-  object-fit:cover;
+  padding:16px;
+  border:1px solid #ddd3cb;
+  border-radius:14px;
+  font-size:18px;
+  outline:none;
+  margin:12px 0;
+  text-transform:uppercase;
 }
 
-.review-buttons{
+.room-code{
+  font-size:40px;
+  font-weight:900;
+  letter-spacing:8px;
+  margin:18px 0;
+}
+
+.status{
+  padding:14px;
+  border-radius:14px;
+  background:#f4eee9;
+  color:#555;
+  margin-top:18px;
+}
+
+.camera-layout{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:20px;
+}
+
+.camera-box{
+  position:relative;
+  overflow:hidden;
+  background:#111;
+  border-radius:24px;
+  padding:8px;
+}
+
+.camera-pair{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
+  background:#111;
+  border-radius:18px;
+  overflow:hidden;
+}
+
+.video-panel{
+  position:relative;
+  aspect-ratio:4/3;
+  background:#222;
+  overflow:hidden;
+}
+
+.video-panel video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transform:scaleX(-1);
+}
+
+.video-label{
+  position:absolute;
+  bottom:10px;
+  left:10px;
+  background:rgba(0,0,0,.65);
+  color:#fff;
+  padding:7px 11px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+  z-index:2;
+}
+
+.waiting{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  background:rgba(0,0,0,.45);
+  text-align:center;
+  padding:20px;
+}
+
+.countdown{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:50;
+}
+
+.countdown.show{
+  display:flex;
+}
+
+.count-number{
+  color:#fff;
+  font-size:clamp(100px,25vw,260px);
+  font-weight:900;
+  animation:pop .8s ease;
+}
+
+@keyframes pop{
+  0%{transform:scale(.4);opacity:0}
+  40%{transform:scale(1.15);opacity:1}
+  100%{transform:scale(1);opacity:1}
+}
+
+.camera-controls{
   display:flex;
   justify-content:center;
   gap:12px;
   flex-wrap:wrap;
+  margin-top:20px;
 }
 
-.retake-btn,
-.keep-btn{
-  border-radius:50px;
-  padding:15px 30px;
-  font-weight:bold;
-}
-
-.retake-btn{
-  background:white;
-  border:1px solid #222;
-}
-
-.keep-btn{
+.capture-btn{
   background:#171717;
-  color:white;
-  border:1px solid #171717;
+  color:#fff;
+  padding:17px 34px;
+  border-radius:999px;
+  font-weight:900;
 }
 
-/* ================= FINAL ================= */
-
-.final-page{
-  min-height:100vh;
-  padding:30px 20px 70px;
-}
-
-.final-wrap{
-  max-width:1000px;
-  margin:auto;
+.progress{
   text-align:center;
+  font-weight:900;
+  margin-bottom:15px;
 }
 
-.final-wrap h2{
-  font-family:Georgia,serif;
-  font-size:48px;
-  margin-bottom:10px;
+.review-photo{
+  width:100%;
+  max-width:850px;
+  margin:auto;
+  background:#111;
+  padding:8px;
+  border-radius:22px;
 }
 
-.final-wrap p{
-  color:#666;
+.review-photo img{
+  width:100%;
+  display:block;
+  border-radius:15px;
 }
 
-.strip-options{
+.motion-review{
+  margin:20px auto 0;
+  max-width:850px;
+}
+
+.motion-review video{
+  width:100%;
+  border-radius:18px;
+  background:#111;
+}
+
+.review-actions{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
+
+.final-title{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.strip-choice{
   display:flex;
   justify-content:center;
   gap:10px;
-  margin:25px 0;
+  margin:20px 0 30px;
 }
 
-.strip-option{
-  border:1px solid #222;
-  background:white;
-  padding:12px 20px;
-  border-radius:50px;
-  font-weight:bold;
+.strip-choice button{
+  padding:11px 20px;
+  border-radius:999px;
+  background:#eee7e1;
+  font-weight:800;
 }
 
-.strip-option.selected{
+.strip-choice button.selected{
   background:#171717;
   color:white;
 }
 
-.strips-preview{
+.strips{
   display:flex;
   justify-content:center;
-  align-items:flex-start;
-  gap:20px;
+  gap:25px;
   flex-wrap:wrap;
-  margin-top:30px;
+  align-items:flex-start;
 }
 
 .strip{
-  width:190px;
-  background:white;
-  padding:9px;
-  box-shadow:8px 9px 0 #dcd0c7;
+  width:min(310px,42vw);
+  background:#fff;
+  padding:12px 12px 20px;
+  border-radius:8px;
+  box-shadow:0 12px 30px rgba(0,0,0,.13);
+}
+
+.strip-header{
+  text-align:center;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:2px;
+  margin-bottom:10px;
 }
 
 .strip-photo{
   width:100%;
-  aspect-ratio:1.35/1;
+  aspect-ratio:2/1;
+  margin-bottom:5px;
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:2px;
-  margin-bottom:5px;
-  background:#ddd;
   overflow:hidden;
+  background:#ddd;
 }
 
 .strip-photo img{
@@ -465,86 +369,75 @@ button{
   object-fit:cover;
 }
 
-.partner-placeholder{
-  background:#eee7df;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:#999;
-  font-size:11px;
-  text-align:center;
-  padding:5px;
+.motion-strip{
+  width:min(310px,42vw);
+  background:#fff;
+  padding:12px 12px 20px;
+  border-radius:8px;
+  box-shadow:0 12px 30px rgba(0,0,0,.13);
 }
 
-.strip-bottom{
-  font-size:8px;
-  letter-spacing:1.3px;
+.motion-title{
   text-align:center;
-  padding:10px 2px 5px;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:2px;
+  margin-bottom:10px;
 }
 
-.final-buttons{
-  margin-top:35px;
+.motion-item{
+  position:relative;
+  margin-bottom:5px;
+  background:#111;
+  aspect-ratio:2/1;
+  overflow:hidden;
+}
+
+.motion-item video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.final-actions{
   display:flex;
   justify-content:center;
-  gap:10px;
+  gap:12px;
+  margin-top:30px;
   flex-wrap:wrap;
 }
 
-.final-btn{
-  padding:15px 25px;
-  border-radius:50px;
-  border:1px solid #222;
-  background:#171717;
-  color:white;
-  font-weight:bold;
+#captureCanvas,
+#motionCanvas{
+  display:none;
 }
 
-.final-btn.light{
-  background:white;
-  color:#171717;
-}
+@media(max-width:700px){
+  .screen{
+    padding:14px;
+  }
 
-/* ================= MOBILE ================= */
+  .card{
+    padding:20px;
+    border-radius:22px;
+  }
 
-@media(max-width:800px){
-
-  .hero{
+  .room-grid{
     grid-template-columns:1fr;
-    padding-top:30px;
+  }
+
+  .camera-pair{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .strip,
+  .motion-strip{
+    width:82vw;
+    max-width:310px;
   }
 
   .hero h1{
-    font-size:58px;
-    letter-spacing:-3px;
-  }
-
-  .preview{
-    margin-top:10px;
-  }
-
-  .panel{
-    padding:25px 20px;
-  }
-
-  .panel h2{
-    font-size:34px;
-  }
-
-  .camera-box{
-    aspect-ratio:3/4;
-  }
-
-  .countdown{
-    font-size:90px;
-  }
-
-  .final-wrap h2{
-    font-size:38px;
-  }
-
-  .strip{
-    width:170px;
+    letter-spacing:-2px;
   }
 }
 </style>
@@ -552,287 +445,286 @@ button{
 
 <body>
 
-<!-- ================= LANDING ================= -->
-
+<!-- LANDING -->
 <section id="landing" class="screen active">
+  <div class="wrap">
+    <div class="card hero">
+      <div class="logo">Moment Us 📸</div>
 
-  <nav class="nav">
-    <div class="logo">moment <span>us</span> 📸</div>
-    <div class="nav-small">virtual photo booth</div>
-  </nav>
-
-  <div class="hero">
-
-    <div class="hero-text">
-
-      <small>FOR PEOPLE WHO AREN'T IN THE SAME PLACE</small>
-
-      <h1>
-        Miles apart.<br>
-        One <span>moment.</span>
-      </h1>
+      <h1>Miles apart.<br>One moment.</h1>
 
       <p>
-        A virtual photo booth for couples, friends, siblings
-        and anyone who wants to make a memory together —
-        even when they're far apart.
+        A virtual photo booth for you and your favorite people.
+        Take real photo-booth style pictures together, even when
+        you're in different places.
       </p>
 
-      <div class="hero-buttons">
-        <button class="primary-btn" onclick="openCreate()">
-          CREATE A MOMENT
-        </button>
-
-        <button class="secondary-btn" onclick="openJoin()">
-          JOIN A MOMENT
-        </button>
-      </div>
-
-    </div>
-
-    <div class="preview">
-
-      <div class="fake-booth">
-
-        <div class="fake-screen">
-          <div class="fake-person">🙂</div>
-          <div class="fake-person">😄</div>
-        </div>
-
-        <div class="fake-caption">
-          MOMENT US • TAKE IT TOGETHER
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= ROOM ================= -->
-
-<section id="room" class="screen">
-
-  <div class="center-page">
-
-    <div class="panel">
-
-      <button class="back-btn" onclick="showScreen('landing')">
-        ← Back
+      <button class="primary" id="startBtn">
+        CREATE A MOMENT
       </button>
 
-      <h2 id="roomTitle">Create your moment.</h2>
-
-      <p id="roomDescription">
-        Create a room and send the code to your person.
-      </p>
-
-      <!-- CREATE -->
-
-      <div id="createArea" class="room-actions">
-
-        <div id="roomCodeDisplay" class="code">
-          ------
-        </div>
-
-        <button class="full-btn" onclick="createRoom()">
-          CREATE ROOM
-        </button>
-
+      <div class="small-note">
+        Two people • One room • Six moments
       </div>
-
-      <!-- JOIN -->
-
-      <div id="joinArea" class="room-actions" style="display:none">
-
-        <input
-          id="joinCode"
-          class="input"
-          maxlength="6"
-          placeholder="ENTER CODE"
-        >
-
-        <button class="full-btn" onclick="joinRoom()">
-          JOIN ROOM
-        </button>
-
-      </div>
-
-      <div id="roomStatus" class="status">
-        Tap CREATE ROOM to begin.
-      </div>
-
     </div>
-
   </div>
-
 </section>
 
 
-<!-- ================= CAMERA ================= -->
+<!-- ROOM -->
+<section id="room" class="screen">
+  <div class="wrap">
+    <div class="card">
 
-<section id="camera" class="screen camera-page">
+      <div class="logo">Moment Us 📸</div>
 
-  <div class="camera-top">
+      <h2>Get into the booth</h2>
 
-    <div>
-      <div id="photoCounter" class="photo-counter">
+      <p class="subtitle">
+        One person creates a room. The other joins using the code.
+      </p>
+
+      <div class="room-grid">
+
+        <div class="room-box">
+          <h3>Create a room</h3>
+          <p class="small-note">
+            Create the room and send the code to your person.
+          </p>
+
+          <button class="primary" id="createRoomBtn">
+            CREATE ROOM
+          </button>
+
+          <div id="createdRoom" style="display:none;">
+            <div class="room-code" id="roomCodeDisplay">------</div>
+
+            <button class="secondary" id="copyCodeBtn">
+              COPY CODE
+            </button>
+          </div>
+        </div>
+
+        <div class="room-box">
+          <h3>Join a room</h3>
+
+          <input
+            id="joinCode"
+            maxlength="6"
+            placeholder="ENTER CODE"
+          >
+
+          <button class="primary" id="joinRoomBtn">
+            JOIN ROOM
+          </button>
+        </div>
+
+      </div>
+
+      <div class="status" id="roomStatus">
+        Waiting for a room...
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CAMERA -->
+<section id="camera" class="screen">
+  <div class="wrap">
+
+    <div class="card">
+
+      <div class="progress" id="photoProgress">
         PHOTO 1 / 6
       </div>
 
-      <div class="motion-label">
-        GET READY — YOUR LAST MOMENT WILL BE CAPTURED
+      <div class="camera-box">
+
+        <div class="camera-pair">
+
+          <div class="video-panel">
+            <video
+              id="video"
+              autoplay
+              muted
+              playsinline>
+            </video>
+
+            <div class="video-label">
+              YOU
+            </div>
+          </div>
+
+          <div class="video-panel">
+            <video
+              id="remoteVideo"
+              autoplay
+              muted
+              playsinline>
+            </video>
+
+            <div class="video-label">
+              THEM
+            </div>
+
+            <div class="waiting" id="remoteWaiting">
+              Waiting for your person...
+            </div>
+          </div>
+
+        </div>
+
       </div>
-    </div>
 
-    <div>
-      MOMENT US 📸
-    </div>
+      <div class="status" id="cameraStatus">
+        Both cameras will capture together.
+      </div>
 
-  </div>
+      <div class="camera-controls">
+        <button class="capture-btn" id="captureBtn">
+          TAKE PHOTO
+        </button>
+      </div>
 
-
-  <div class="camera-box">
-
-    <video
-      id="video"
-      autoplay
-      playsinline
-      muted>
-    </video>
-
-    <div id="cameraPlaceholder" class="camera-placeholder">
-      Allow camera access to continue.
-    </div>
-
-    <div id="countdown" class="countdown">
-      3
     </div>
 
   </div>
-
-
-  <div class="camera-controls">
-
-    <button
-      class="capture-btn"
-      onclick="startCountdown()">
-    </button>
-
-  </div>
-
 </section>
 
 
-<!-- ================= REVIEW ================= -->
+<!-- REVIEW -->
+<section id="review" class="screen">
+  <div class="wrap">
 
-<section id="review" class="screen review-page">
+    <div class="card">
 
-  <div class="review-wrap">
+      <div class="progress" id="reviewCounter">
+        PHOTO 1 / 6
+      </div>
 
-    <h2>Keep this moment?</h2>
+      <h2 style="text-align:center;">
+        Keep this moment?
+      </h2>
 
-    <p id="reviewCounter">
-      PHOTO 1 / 6
-    </p>
+      <p class="subtitle" style="text-align:center;">
+        Both of you need to keep it before the next photo.
+      </p>
 
-    <div class="review-photo-box">
+      <div class="review-photo">
+        <img id="capturedPhoto" alt="Captured photo">
+      </div>
 
-      <img
-        id="capturedPhoto"
-        alt="Captured photo">
+      <div class="motion-review">
+        <video
+          id="capturedMotionVideo"
+          controls
+          loop
+          muted
+          playsinline>
+        </video>
+      </div>
 
-    </div>
+      <div class="review-actions">
 
-    <div class="review-buttons">
+        <button class="danger" id="retakeBtn">
+          RETAKE
+        </button>
 
-      <button
-        class="retake-btn"
-        onclick="retakePhoto()">
-        RETAKE
-      </button>
+        <button class="primary" id="keepBtn">
+          KEEP PHOTO
+        </button>
 
-      <button
-        class="keep-btn"
-        onclick="keepPhoto()">
-        KEEP PHOTO
-      </button>
+      </div>
 
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= FINAL ================= -->
-
-<section id="final" class="screen final-page">
-
-  <div class="final-wrap">
-
-    <h2>Your moment is ready.</h2>
-
-    <p>
-      Six memories. One little photo booth.
-    </p>
-
-    <div class="strip-options">
-
-      <button
-        id="oneStrip"
-        class="strip-option selected"
-        onclick="selectStrips(1)">
-        1 STRIP
-      </button>
-
-      <button
-        id="twoStrips"
-        class="strip-option"
-        onclick="selectStrips(2)">
-        2 STRIPS
-      </button>
-
-    </div>
-
-    <div
-      id="stripsPreview"
-      class="strips-preview">
-    </div>
-
-    <div class="final-buttons">
-
-      <button
-        class="final-btn"
-        onclick="downloadStrip()">
-        DOWNLOAD
-      </button>
-
-      <button
-        class="final-btn light"
-        onclick="startAgain()">
-        START AGAIN
-      </button>
+      <div class="status" id="decisionStatus">
+        Choose KEEP or RETAKE.
+      </div>
 
     </div>
 
   </div>
-
 </section>
 
 
-<!-- Hidden canvas used to capture photos -->
-<canvas id="captureCanvas" style="display:none"></canvas>
+<!-- FINAL -->
+<section id="final" class="screen">
+  <div class="wrap">
+
+    <div class="card">
+
+      <div class="logo">Moment Us 📸</div>
+
+      <div class="final-title">
+        <h2>Your moments are ready.</h2>
+
+        <p class="subtitle">
+          Six moments. One little reminder that distance doesn't
+          have to stop you from making memories.
+        </p>
+      </div>
+
+      <div class="strip-choice">
+
+        <button
+          id="oneStripBtn"
+          class="selected">
+          1 STRIP
+        </button>
+
+        <button
+          id="twoStripBtn">
+          2 STRIPS
+        </button>
+
+      </div>
+
+      <div class="strips" id="stripsPreview"></div>
+
+      <br><br>
+
+      <h3 style="text-align:center;margin-bottom:10px;">
+        MOTION MOMENTS
+      </h3>
+
+      <p class="subtitle" style="text-align:center;">
+        A little piece of what happened just before each photo.
+      </p>
+
+      <div class="strips" id="motionPreview"></div>
+
+      <div class="final-actions">
+
+        <button class="primary" id="downloadBtn">
+          DOWNLOAD PHOTO STRIP
+        </button>
+
+        <button class="secondary" id="startAgainBtn">
+          START AGAIN
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- COUNTDOWN -->
+<div class="countdown" id="countdown">
+  <div class="count-number" id="countNumber">
+    3
+  </div>
+</div>
+
+
+<canvas id="captureCanvas"></canvas>
+<canvas id="motionCanvas"></canvas>
 
 
 <script type="module">
-
-/* =====================================================
-   FIREBASE
-===================================================== */
 
 import {
   initializeApp
@@ -844,363 +736,386 @@ import {
   set,
   get,
   update,
-  onValue
+  onValue,
+  remove
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 
 
+/* =========================
+   FIREBASE
+========================= */
+
 const firebaseConfig = {
-
   apiKey: "AIzaSyDpl5yW3LYEjjwEB3U1KlTEU3iNCroaLLI",
-
-  authDomain:
-    "moment-us-photo-booth.firebaseapp.com",
-
-  databaseURL:
-    "https://moment-us-photo-booth-default-rtdb.firebaseio.com",
-
-  projectId:
-    "moment-us-photo-booth",
-
-  storageBucket:
-    "moment-us-photo-booth.firebasestorage.app",
-
-  messagingSenderId:
-    "750391561895",
-
-  appId:
-    "1:750391561895:web:fd8c22191f3a16d56b5582"
+  authDomain: "moment-us-photo-booth.firebaseapp.com",
+  databaseURL: "https://moment-us-photo-booth-default-rtdb.firebaseio.com",
+  projectId: "moment-us-photo-booth",
+  storageBucket: "moment-us-photo-booth.firebasestorage.app",
+  messagingSenderId: "750391561895",
+  appId: "1:750391561895:web:fd8c22191f3a16d56b5582"
 };
 
-
 const app = initializeApp(firebaseConfig);
-
 const database = getDatabase(app);
 
 
-/* =====================================================
+/* =========================
    VARIABLES
-===================================================== */
+========================= */
 
 let roomCode = "";
-
 let role = "";
 
 let stream = null;
+let peerConnection = null;
 
 let cameraStarted = false;
+let connectionStarted = false;
 
 let photoNumber = 1;
-
 let selectedStrips = 1;
 
 let capturedPhotos = [];
-
 let capturedMotion = [];
 
-let motionRecorder = null;
+let pendingPhoto = null;
+let pendingMotion = null;
 
+let motionRecorder = null;
 let motionChunks = [];
 
-let motionTimer = null;
+let countdownRunning = false;
+let lastCaptureNumber = 0;
 
-let pendingPhoto = null;
+let localServerOffset = 0;
 
-
-/* =====================================================
-   SCREEN
-===================================================== */
-
-window.showScreen = function(id){
-
-  document
-    .querySelectorAll(".screen")
-    .forEach(screen => {
-      screen.classList.remove("active");
-    });
-
-  document
-    .getElementById(id)
-    .classList.add("active");
-
-};
+let decisionBeingProcessed = false;
 
 
-/* =====================================================
-   LANDING
-===================================================== */
+/* =========================
+   ELEMENTS
+========================= */
 
-window.openCreate = function(){
+const landing =
+  document.getElementById("landing");
 
-  document.getElementById("roomTitle").textContent =
-    "Create your moment.";
+const room =
+  document.getElementById("room");
 
-  document.getElementById("roomDescription").textContent =
-    "Create a room and send the code to your person.";
+const camera =
+  document.getElementById("camera");
 
-  document.getElementById("createArea").style.display =
-    "block";
+const review =
+  document.getElementById("review");
 
-  document.getElementById("joinArea").style.display =
-    "none";
+const final =
+  document.getElementById("final");
 
-  document.getElementById("roomCodeDisplay").textContent =
-    "------";
+const video =
+  document.getElementById("video");
 
-  document.getElementById("roomStatus").textContent =
-    "Tap CREATE ROOM to begin.";
+const remoteVideo =
+  document.getElementById("remoteVideo");
 
-  showScreen("room");
+const remoteWaiting =
+  document.getElementById("remoteWaiting");
 
-};
+const captureCanvas =
+  document.getElementById("captureCanvas");
 
-
-window.openJoin = function(){
-
-  document.getElementById("roomTitle").textContent =
-    "Join a moment.";
-
-  document.getElementById("roomDescription").textContent =
-    "Enter the six-character code your person sent you.";
-
-  document.getElementById("createArea").style.display =
-    "none";
-
-  document.getElementById("joinArea").style.display =
-    "block";
-
-  document.getElementById("roomStatus").textContent =
-    "Enter your room code.";
-
-  showScreen("room");
-
-};
+const motionCanvas =
+  document.getElementById("motionCanvas");
 
 
-/* =====================================================
-   ROOM CODE
-===================================================== */
+/* =========================
+   SCREEN SWITCH
+========================= */
 
-function generateCode(){
+function showScreen(screen){
+  document.querySelectorAll(".screen")
+    .forEach(s => s.classList.remove("active"));
 
-  const characters =
-    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-
-  let code = "";
-
-  for(let i = 0; i < 6; i++){
-
-    code += characters[
-      Math.floor(
-        Math.random() * characters.length
-      )
-    ];
-
-  }
-
-  return code;
-
+  screen.classList.add("active");
 }
 
 
-/* =====================================================
+/* =========================
+   START
+========================= */
+
+document
+  .getElementById("startBtn")
+  .addEventListener("click", () => {
+
+    showScreen(room);
+
+  });
+
+
+/* =========================
    CREATE ROOM
-===================================================== */
+========================= */
 
-window.createRoom = async function(){
-
-  const status =
-    document.getElementById("roomStatus");
-
-  status.textContent =
-    "Creating your room...";
-
-  try{
-
-    roomCode = generateCode();
+document
+  .getElementById("createRoomBtn")
+  .addEventListener("click", async () => {
 
     role = "host";
+
+    roomCode = generateRoomCode();
 
     const roomRef =
       ref(database, "rooms/" + roomCode);
 
-    await set(roomRef, {
+    try{
 
-      host:true,
+      await set(roomRef, {
 
-      guest:false,
+        host:true,
+        guest:false,
 
-      status:"waiting",
+        status:"waiting",
 
-      createdAt:Date.now()
+        createdAt:Date.now(),
 
-    });
+        session:{
+          currentPhoto:1,
+          captureAt:0,
+          captureNumber:0,
+          decision:{
+            host:"",
+            guest:""
+          },
+          result:"",
+          version:0
+        }
 
-    document
-      .getElementById("roomCodeDisplay")
-      .textContent = roomCode;
+      });
 
-    status.textContent =
-      "Waiting for your person to join...";
+      document
+        .getElementById("createdRoom")
+        .style.display = "block";
 
-    listenToRoom();
+      document
+        .getElementById("roomCodeDisplay")
+        .textContent = roomCode;
 
-  }catch(error){
+      document
+        .getElementById("roomStatus")
+        .textContent =
+          "Room created. Send this code to the other person.";
 
-    console.error(error);
+      listenToRoom();
 
-    status.textContent =
-      "Something went wrong: " +
-      error.message;
+    }catch(error){
 
-  }
+      console.error(error);
 
-};
+      alert(
+        "Could not create the room. Check your Firebase rules."
+      );
+
+    }
+
+  });
 
 
-/* =====================================================
+/* =========================
    JOIN ROOM
-===================================================== */
+========================= */
 
-window.joinRoom = async function(){
-
-  const status =
-    document.getElementById("roomStatus");
-
-  const input =
-    document
-      .getElementById("joinCode")
-      .value
-      .trim()
-      .toUpperCase();
-
-  if(input.length !== 6){
-
-    status.textContent =
-      "Please enter the 6-character room code.";
-
-    return;
-
-  }
-
-  status.textContent =
-    "Looking for the room...";
-
-  try{
-
-    const roomRef =
-      ref(database, "rooms/" + input);
-
-    const snapshot =
-      await get(roomRef);
-
-    if(!snapshot.exists()){
-
-      status.textContent =
-        "Room not found. Check the code.";
-
-      return;
-
-    }
-
-    const room =
-      snapshot.val();
-
-    if(room.guest === true){
-
-      status.textContent =
-        "Someone has already joined this room.";
-
-      return;
-
-    }
-
-    roomCode = input;
+document
+  .getElementById("joinRoomBtn")
+  .addEventListener("click", async () => {
 
     role = "guest";
 
-    await update(roomRef, {
+    roomCode =
+      document
+        .getElementById("joinCode")
+        .value
+        .trim()
+        .toUpperCase();
 
-      guest:true,
+    if(roomCode.length !== 6){
 
-      status:"connected"
+      alert("Enter the 6-character room code.");
 
-    });
+      return;
+    }
 
-    status.textContent =
-      "You joined! Waiting for the camera...";
+    try{
 
-    listenToRoom();
+      const roomRef =
+        ref(database, "rooms/" + roomCode);
 
-  }catch(error){
+      const snapshot =
+        await get(roomRef);
 
-    console.error(error);
+      if(!snapshot.exists()){
 
-    status.textContent =
-      "Something went wrong: " +
-      error.message;
+        alert("That room does not exist.");
+
+        return;
+      }
+
+      await update(roomRef,{
+
+        guest:true,
+        status:"connected"
+
+      });
+
+      document
+        .getElementById("roomStatus")
+        .textContent =
+          "Connected! Waiting for the camera connection...";
+
+      listenToRoom();
+
+    }catch(error){
+
+      console.error(error);
+
+      alert(
+        "Could not join the room. Check your Firebase rules."
+      );
+
+    }
+
+  });
+
+
+/* =========================
+   COPY CODE
+========================= */
+
+document
+  .getElementById("copyCodeBtn")
+  .addEventListener("click", async () => {
+
+    try{
+
+      await navigator.clipboard.writeText(roomCode);
+
+      document
+        .getElementById("copyCodeBtn")
+        .textContent = "COPIED ✓";
+
+    }catch{
+
+      alert("Room code: " + roomCode);
+
+    }
+
+  });
+
+
+/* =========================
+   GENERATE ROOM CODE
+========================= */
+
+function generateRoomCode(){
+
+  const chars =
+    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+  let code = "";
+
+  for(let i=0;i<6;i++){
+
+    code +=
+      chars[Math.floor(Math.random()*chars.length)];
 
   }
 
-};
+  return code;
+}
 
 
-/* =====================================================
-   LISTEN FOR PARTNER
-===================================================== */
+/* =========================
+   SERVER TIME OFFSET
+========================= */
+
+onValue(
+  ref(database,".info/serverTimeOffset"),
+  snapshot => {
+
+    localServerOffset =
+      snapshot.val() || 0;
+
+  }
+);
+
+function serverNow(){
+
+  return Date.now() + localServerOffset;
+
+}
+
+
+/* =========================
+   ROOM LISTENER
+========================= */
 
 function listenToRoom(){
 
   const roomRef =
-    ref(database, "rooms/" + roomCode);
+    ref(database,"rooms/" + roomCode);
 
-  onValue(roomRef, snapshot => {
+  onValue(roomRef, async snapshot => {
 
     if(!snapshot.exists()) return;
 
-    const room = snapshot.val();
+    const roomData =
+      snapshot.val();
 
     if(
-      room.host === true &&
-      room.guest === true
+      roomData.host === true &&
+      roomData.guest === true
     ){
 
       document
         .getElementById("roomStatus")
         .textContent =
-        "Both people are connected! 🎉";
+          "Both people are connected! 🎉";
 
-      if(!cameraStarted){
+      if(!connectionStarted){
 
-        setTimeout(() => {
+        connectionStarted = true;
 
-          startCamera();
+        await startCamera();
 
-        }, 800);
+        if(role === "host"){
+
+          await createOffer();
+
+        }else{
+
+          await waitForOffer();
+
+        }
 
       }
 
     }
+
+    listenForCapture(roomData);
+
+    listenForDecisions(roomData);
 
   });
 
 }
 
 
-/* =====================================================
+/* =========================
    CAMERA
-===================================================== */
+========================= */
 
-window.startCamera = async function(){
+async function startCamera(){
 
-  if(cameraStarted && stream){
-
-    showScreen("camera");
-
-    return;
-
-  }
-
-  showScreen("camera");
+  if(cameraStarted) return;
 
   try{
 
@@ -1209,212 +1124,388 @@ window.startCamera = async function(){
 
         video:{
           facingMode:"user",
-          width:{
-            ideal:1280
-          },
-          height:{
-            ideal:720
-          }
+          width:{ideal:1280},
+          height:{ideal:720}
         },
 
         audio:false
 
       });
 
-    const video =
-      document.getElementById("video");
-
     video.srcObject = stream;
-
-    await video.play();
 
     cameraStarted = true;
 
-    document
-      .getElementById("cameraPlaceholder")
-      .style.display = "none";
+    await video.play();
 
-    updatePhotoCounter();
+    document
+      .getElementById("cameraStatus")
+      .textContent =
+        "Connecting both cameras...";
+
+    await createPeerConnection();
+
+    showScreen(camera);
 
   }catch(error){
 
     console.error(error);
 
-    document
-      .getElementById("cameraPlaceholder")
-      .innerHTML = `
-        <div>
-          ⚠️<br><br>
-          Please allow camera access.
-        </div>
-      `;
+    alert(
+      "Camera permission is needed for Moment Us to work."
+    );
 
   }
-
-};
-
-
-/* =====================================================
-   PHOTO COUNTER
-===================================================== */
-
-function updatePhotoCounter(){
-
-  document
-    .getElementById("photoCounter")
-    .textContent =
-    "PHOTO " + photoNumber + " / 6";
-
-  document
-    .getElementById("reviewCounter")
-    .textContent =
-    "PHOTO " + photoNumber + " / 6";
 
 }
 
 
-/* =====================================================
-   START COUNTDOWN
-===================================================== */
+/* =========================
+   WEBRTC
+========================= */
 
-window.startCountdown = function(){
+async function createPeerConnection(){
 
-  if(!stream){
+  if(peerConnection) return;
 
-    alert("Please allow your camera first.");
+  peerConnection =
+    new RTCPeerConnection({
 
-    return;
+      iceServers:[
+        {
+          urls:"stun:stun.l.google.com:19302"
+        }
+      ]
+
+    });
+
+
+  /* LOCAL TRACKS */
+
+  stream
+    .getTracks()
+    .forEach(track => {
+
+      peerConnection.addTrack(
+        track,
+        stream
+      );
+
+    });
+
+
+  /* REMOTE TRACK */
+
+  peerConnection.ontrack = event => {
+
+    if(event.streams && event.streams[0]){
+
+      remoteVideo.srcObject =
+        event.streams[0];
+
+      remoteWaiting.style.display =
+        "none";
+
+      document
+        .getElementById("cameraStatus")
+        .textContent =
+          "You're both in the booth. 📸";
+
+    }
+
+  };
+
+
+  /* ICE */
+
+  peerConnection.onicecandidate =
+    async event => {
+
+      if(!event.candidate) return;
+
+      const candidateRef =
+        ref(
+          database,
+          "rooms/" +
+          roomCode +
+          "/webrtc/" +
+          role +
+          "Candidates"
+        );
+
+      const candidateKey =
+        candidateRef.push
+          ? candidateRef.push().key
+          : Math.random().toString(36).slice(2);
+
+      await set(
+        ref(
+          database,
+          "rooms/" +
+          roomCode +
+          "/webrtc/" +
+          role +
+          "Candidates/" +
+          candidateKey
+        ),
+        event.candidate.toJSON()
+      );
+
+    };
+
+
+  if(role === "host"){
+
+    listenForGuestCandidates();
+
+  }else{
+
+    listenForHostCandidates();
 
   }
 
-  const countdown =
-    document.getElementById("countdown");
+}
 
-  countdown.style.display = "flex";
 
-  let number = 3;
+/* =========================
+   HOST OFFER
+========================= */
 
-  countdown.textContent = number;
+async function createOffer(){
 
-  /* Start recording the little movement
-     BEFORE the final photo. */
+  if(!peerConnection) return;
 
-  startMotionCapture();
+  const offer =
+    await peerConnection.createOffer();
 
-  const timer =
-    setInterval(() => {
+  await peerConnection.setLocalDescription(
+    offer
+  );
 
-      number--;
+  await set(
+    ref(
+      database,
+      "rooms/" +
+      roomCode +
+      "/webrtc/offer"
+    ),
+    {
+      type:offer.type,
+      sdp:offer.sdp
+    }
+  );
 
-      if(number > 0){
+  listenForAnswer();
 
-        countdown.textContent =
-          number;
+}
 
-      }else{
 
-        clearInterval(timer);
+/* =========================
+   HOST ANSWER LISTENER
+========================= */
 
-        countdown.textContent =
-          "📸";
+function listenForAnswer(){
 
-        setTimeout(() => {
+  onValue(
+    ref(
+      database,
+      "rooms/" +
+      roomCode +
+      "/webrtc/answer"
+    ),
+    async snapshot => {
 
-          capturePhoto();
+      if(!snapshot.exists()) return;
 
-          countdown.style.display =
-            "none";
+      if(
+        peerConnection &&
+        !peerConnection.currentRemoteDescription
+      ){
 
-        }, 450);
+        try{
+
+          await peerConnection.setRemoteDescription(
+            snapshot.val()
+          );
+
+        }catch(error){
+
+          console.error(
+            "Answer error:",
+            error
+          );
+
+        }
 
       }
 
-    }, 700);
+    }
+  );
 
-};
+}
 
 
-/* =====================================================
-   MOTION CAPTURE
-===================================================== */
+/* =========================
+   GUEST OFFER
+========================= */
 
-function startMotionCapture(){
+async function waitForOffer(){
 
-  if(!stream) return;
+  onValue(
+    ref(
+      database,
+      "rooms/" +
+      roomCode +
+      "/webrtc/offer"
+    ),
+    async snapshot => {
 
-  if(
-    typeof MediaRecorder === "undefined"
-  ){
+      if(!snapshot.exists()) return;
 
+      if(
+        !peerConnection ||
+        peerConnection.currentRemoteDescription
+      ){
+
+        return;
+
+      }
+
+      try{
+
+        const offer =
+          snapshot.val();
+
+        await peerConnection.setRemoteDescription(
+          offer
+        );
+
+        const answer =
+          await peerConnection.createAnswer();
+
+        await peerConnection.setLocalDescription(
+          answer
+        );
+
+        await set(
+          ref(
+            database,
+            "rooms/" +
+            roomCode +
+            "/webrtc/answer"
+          ),
+          {
+            type:answer.type,
+            sdp:answer.sdp
+          }
+        );
+
+      }catch(error){
+
+        console.error(
+          "Offer error:",
+          error
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================
+   ICE LISTENERS
+========================= */
+
+function listenForHostCandidates(){
+
+  onValue(
+    ref(
+      database,
+      "rooms/" +
+      roomCode +
+      "/webrtc/hostCandidates"
+    ),
+    snapshot => {
+
+      if(!snapshot.exists()) return;
+
+      snapshot.forEach(
+        child => {
+
+          addIceCandidateOnce(
+            child.key,
+            child.val()
+          );
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+function listenForGuestCandidates(){
+
+  onValue(
+    ref(
+      database,
+      "rooms/" +
+      roomCode +
+      "/webrtc/guestCandidates"
+    ),
+    snapshot => {
+
+      if(!snapshot.exists()) return;
+
+      snapshot.forEach(
+        child => {
+
+          addIceCandidateOnce(
+            child.key,
+            child.val()
+          );
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+const receivedCandidates =
+  new Set();
+
+async function addIceCandidateOnce(
+  key,
+  candidate
+){
+
+  if(receivedCandidates.has(key))
     return;
 
-  }
+  receivedCandidates.add(key);
 
   try{
 
-    motionChunks = [];
+    if(peerConnection){
 
-    motionRecorder =
-      new MediaRecorder(stream);
+      await peerConnection.addIceCandidate(
+        new RTCIceCandidate(candidate)
+      );
 
-    motionRecorder.ondataavailable =
-      event => {
-
-        if(event.data.size > 0){
-
-          motionChunks.push(event.data);
-
-        }
-
-      };
-
-    motionRecorder.onstop =
-      () => {
-
-        if(motionChunks.length === 0){
-
-          return;
-
-        }
-
-        const blob =
-          new Blob(
-            motionChunks,
-            {type:"video/webm"}
-          );
-
-        const url =
-          URL.createObjectURL(blob);
-
-        capturedMotion[photoNumber - 1] =
-          url;
-
-      };
-
-    motionRecorder.start();
-
-    /* We keep recording for a short moment.
-       The actual photo is captured at the end
-       of this countdown. */
-
-    motionTimer =
-      setTimeout(() => {
-
-        if(
-          motionRecorder &&
-          motionRecorder.state !== "inactive"
-        ){
-
-          motionRecorder.stop();
-
-        }
-
-      }, 2100);
+    }
 
   }catch(error){
 
     console.log(
-      "Motion capture unavailable",
+      "ICE candidate error",
       error
     );
 
@@ -1423,278 +1514,1232 @@ function startMotionCapture(){
 }
 
 
-/* =====================================================
-   CAPTURE REAL PHOTO
-===================================================== */
+/* =========================
+   CAPTURE BUTTON
+========================= */
 
-function capturePhoto(){
+document
+  .getElementById("captureBtn")
+  .addEventListener(
+    "click",
+    requestCapture
+  );
 
-  const video =
-    document.getElementById("video");
 
-  const canvas =
-    document.getElementById("captureCanvas");
+async function requestCapture(){
+
+  if(countdownRunning)
+    return;
 
   if(
-    !video ||
-    video.readyState < 2
+    !remoteVideo.srcObject ||
+    remoteVideo.readyState < 2
   ){
 
-    alert("Camera is not ready yet.");
+    alert(
+      "Wait until both cameras are connected."
+    );
 
     return;
 
   }
 
-  const width =
-    video.videoWidth;
+  const captureAt =
+    serverNow() + 3500;
 
-  const height =
-    video.videoHeight;
+  const sessionRef =
+    ref(
+      database,
+      "rooms/" +
+      roomCode +
+      "/session"
+    );
 
-  canvas.width = width;
+  await update(
+    sessionRef,
+    {
 
-  canvas.height = height;
+      captureAt:captureAt,
 
-  const context =
-    canvas.getContext("2d");
+      captureNumber:photoNumber,
 
-  /* Mirror the captured image so
-     it looks like the camera preview. */
+      decision:{
+        host:"",
+        guest:""
+      },
 
-  context.save();
+      result:""
 
-  context.translate(width, 0);
+    }
+  );
 
-  context.scale(-1, 1);
+}
 
-  context.drawImage(
-    video,
+
+/* =========================
+   CAPTURE LISTENER
+========================= */
+
+function listenForCapture(roomData){
+
+  const captureAt =
+    roomData.session?.captureAt || 0;
+
+  const captureNumber =
+    roomData.session?.captureNumber || 0;
+
+  if(
+    !captureAt ||
+    !captureNumber ||
+    captureNumber !== photoNumber
+  ){
+
+    return;
+
+  }
+
+  if(
+    captureNumber <= lastCaptureNumber
+  ){
+
+    return;
+
+  }
+
+  lastCaptureNumber =
+    captureNumber;
+
+  runSynchronizedCountdown(
+    captureAt
+  );
+
+}
+
+
+/* =========================
+   SYNCHRONIZED COUNTDOWN
+========================= */
+
+async function runSynchronizedCountdown(
+  captureAt
+){
+
+  if(countdownRunning)
+    return;
+
+  countdownRunning = true;
+
+  startMotionRecording();
+
+  while(true){
+
+    const remaining =
+      captureAt - serverNow();
+
+    if(remaining <= 0)
+      break;
+
+    const seconds =
+      Math.ceil(remaining / 1000);
+
+    showCountdown(seconds);
+
+    await sleep(100);
+
+  }
+
+  hideCountdown();
+
+  await capturePhoto();
+
+  setTimeout(
+    stopMotionRecording,
+    300
+  );
+
+  countdownRunning = false;
+
+}
+
+
+/* =========================
+   COUNTDOWN UI
+========================= */
+
+function showCountdown(number){
+
+  const box =
+    document.getElementById("countdown");
+
+  const text =
+    document.getElementById("countNumber");
+
+  text.textContent =
+    number;
+
+  text.style.animation =
+    "none";
+
+  void text.offsetWidth;
+
+  text.style.animation =
+    "pop .8s ease";
+
+  box.classList.add("show");
+
+}
+
+
+function hideCountdown(){
+
+  document
+    .getElementById("countdown")
+    .classList.remove("show");
+
+}
+
+
+function sleep(ms){
+
+  return new Promise(
+    resolve => setTimeout(resolve,ms)
+  );
+
+}
+
+
+/* =========================
+   MOTION CANVAS LOOP
+========================= */
+
+let motionAnimation = null;
+
+function drawMotionFrame(){
+
+  const ctx =
+    motionCanvas.getContext("2d");
+
+  const width = 1200;
+  const height = 600;
+
+  motionCanvas.width =
+    width;
+
+  motionCanvas.height =
+    height;
+
+  ctx.fillStyle =
+    "#111";
+
+  ctx.fillRect(
     0,
     0,
     width,
     height
   );
 
-  context.restore();
+
+  drawVideoToCanvas(
+    ctx,
+    video,
+    0,
+    0,
+    width/2,
+    height
+  );
+
+
+  drawVideoToCanvas(
+    ctx,
+    remoteVideo,
+    width/2,
+    0,
+    width/2,
+    height
+  );
+
+
+  motionAnimation =
+    requestAnimationFrame(
+      drawMotionFrame
+    );
+
+}
+
+
+function drawVideoToCanvas(
+  ctx,
+  vid,
+  x,
+  y,
+  w,
+  h
+){
+
+  if(
+    !vid ||
+    vid.readyState < 2
+  ){
+
+    ctx.fillStyle =
+      "#222";
+
+    ctx.fillRect(
+      x,y,w,h
+    );
+
+    return;
+
+  }
+
+  const vw =
+    vid.videoWidth;
+
+  const vh =
+    vid.videoHeight;
+
+  if(!vw || !vh)
+    return;
+
+  const videoRatio =
+    vw / vh;
+
+  const boxRatio =
+    w / h;
+
+  let sx = 0;
+  let sy = 0;
+  let sw = vw;
+  let sh = vh;
+
+  if(videoRatio > boxRatio){
+
+    sw =
+      vh * boxRatio;
+
+    sx =
+      (vw-sw)/2;
+
+  }else{
+
+    sh =
+      vw / boxRatio;
+
+    sy =
+      (vh-sh)/2;
+
+  }
+
+  ctx.save();
+
+  ctx.translate(
+    x+w,
+    y
+  );
+
+  ctx.scale(
+    -1,
+    1
+  );
+
+  ctx.drawImage(
+    vid,
+    sx,
+    sy,
+    sw,
+    sh,
+    0,
+    0,
+    w,
+    h
+  );
+
+  ctx.restore();
+
+}
+
+
+/* =========================
+   START MOTION RECORDING
+========================= */
+
+function startMotionRecording(){
+
+  if(
+    typeof MediaRecorder ===
+    "undefined"
+  ){
+
+    return;
+
+  }
+
+  try{
+
+    if(motionRecorder){
+
+      try{
+        motionRecorder.stop();
+      }catch{}
+
+    }
+
+    if(motionAnimation)
+      cancelAnimationFrame(
+        motionAnimation
+      );
+
+    drawMotionFrame();
+
+    const canvasStream =
+      motionCanvas.captureStream(20);
+
+    motionChunks = [];
+
+    const types = [
+
+      "video/webm;codecs=vp9",
+
+      "video/webm;codecs=vp8",
+
+      "video/webm",
+
+      "video/mp4"
+
+    ];
+
+    let mimeType = "";
+
+    for(
+      const type of types
+    ){
+
+      if(
+        MediaRecorder.isTypeSupported(
+          type
+        )
+      ){
+
+        mimeType =
+          type;
+
+        break;
+
+      }
+
+    }
+
+    motionRecorder =
+      mimeType
+        ? new MediaRecorder(
+            canvasStream,
+            {mimeType}
+          )
+        : new MediaRecorder(
+            canvasStream
+          );
+
+
+    motionRecorder.ondataavailable =
+      event => {
+
+        if(event.data.size > 0){
+
+          motionChunks.push(
+            event.data
+          );
+
+        }
+
+      };
+
+
+    motionRecorder.onstop =
+      () => {
+
+        if(motionChunks.length === 0)
+          return;
+
+        const blob =
+          new Blob(
+            motionChunks,
+            {
+              type:
+                motionRecorder.mimeType ||
+                "video/webm"
+            }
+          );
+
+        pendingMotion =
+          URL.createObjectURL(
+            blob
+          );
+
+      };
+
+
+    motionRecorder.start();
+
+  }catch(error){
+
+    console.log(
+      "Motion recording unavailable:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================
+   STOP MOTION
+========================= */
+
+function stopMotionRecording(){
+
+  if(
+    motionRecorder &&
+    motionRecorder.state !==
+      "inactive"
+  ){
+
+    motionRecorder.stop();
+
+  }
+
+  if(motionAnimation){
+
+    cancelAnimationFrame(
+      motionAnimation
+    );
+
+    motionAnimation = null;
+
+  }
+
+}
+
+
+/* =========================
+   CAPTURE PHOTO
+========================= */
+
+async function capturePhoto(){
+
+  const localReady =
+    video.readyState >= 2;
+
+  const remoteReady =
+    remoteVideo.readyState >= 2;
+
+  if(
+    !localReady ||
+    !remoteReady
+  ){
+
+    alert(
+      "Both cameras are not ready yet."
+    );
+
+    return;
+
+  }
+
+
+  const width =
+    1200;
+
+  const height =
+    600;
+
+  captureCanvas.width =
+    width;
+
+  captureCanvas.height =
+    height;
+
+  const ctx =
+    captureCanvas.getContext("2d");
+
+
+  drawVideoToCanvas(
+    ctx,
+    video,
+    0,
+    0,
+    width/2,
+    height
+  );
+
+
+  drawVideoToCanvas(
+    ctx,
+    remoteVideo,
+    width/2,
+    0,
+    width/2,
+    height
+  );
+
 
   pendingPhoto =
-    canvas.toDataURL(
+    captureCanvas.toDataURL(
       "image/jpeg",
       0.92
     );
 
+
   document
     .getElementById("capturedPhoto")
-    .src = pendingPhoto;
+    .src =
+      pendingPhoto;
+
 
   document
     .getElementById("reviewCounter")
     .textContent =
-    "PHOTO " + photoNumber + " / 6";
+      "PHOTO " +
+      photoNumber +
+      " / 6";
 
-  showScreen("review");
+
+  await sleep(500);
+
+  if(pendingMotion){
+
+    const motionVideo =
+      document
+        .getElementById(
+          "capturedMotionVideo"
+        );
+
+    motionVideo.src =
+      pendingMotion;
+
+    motionVideo.load();
+
+  }
+
+
+  showScreen(review);
 
 }
 
 
-/* =====================================================
+/* =========================
+   KEEP
+========================= */
+
+document
+  .getElementById("keepBtn")
+  .addEventListener(
+    "click",
+    async () => {
+
+      await submitDecision(
+        "keep"
+      );
+
+    }
+  );
+
+
+/* =========================
    RETAKE
-===================================================== */
+========================= */
 
-window.retakePhoto = function(){
+document
+  .getElementById("retakeBtn")
+  .addEventListener(
+    "click",
+    async () => {
 
-  pendingPhoto = null;
+      await submitDecision(
+        "retake"
+      );
 
-  updatePhotoCounter();
-
-  showScreen("camera");
-
-};
+    }
+  );
 
 
-/* =====================================================
-   KEEP PHOTO
-===================================================== */
+/* =========================
+   SUBMIT DECISION
+========================= */
 
-window.keepPhoto = function(){
+async function submitDecision(
+  decision
+){
 
-  if(!pendingPhoto){
+  const decisionRef =
+    ref(
+      database,
+      "rooms/" +
+      roomCode +
+      "/session/decision/" +
+      role
+    );
+
+  await set(
+    decisionRef,
+    decision
+  );
+
+  document
+    .getElementById("decisionStatus")
+    .textContent =
+      decision === "keep"
+        ? "You chose KEEP. Waiting for the other person..."
+        : "You chose RETAKE. Waiting for the other person...";
+
+}
+
+
+/* =========================
+   DECISION LISTENER
+========================= */
+
+function listenForDecisions(roomData){
+
+  if(role !== "host")
+    return;
+
+  if(decisionBeingProcessed)
+    return;
+
+  const decisions =
+    roomData.session?.decision || {};
+
+  const hostDecision =
+    decisions.host || "";
+
+  const guestDecision =
+    decisions.guest || "";
+
+  if(
+    !hostDecision ||
+    !guestDecision
+  ){
 
     return;
 
   }
 
-  capturedPhotos[photoNumber - 1] =
-    pendingPhoto;
 
-  pendingPhoto = null;
+  decisionBeingProcessed = true;
 
-  if(photoNumber < 6){
 
-    photoNumber++;
+  if(
+    hostDecision === "retake" ||
+    guestDecision === "retake"
+  ){
 
-    updatePhotoCounter();
+    handleRetake();
 
-    showScreen("camera");
+  }else if(
+    hostDecision === "keep" &&
+    guestDecision === "keep"
+  ){
 
-  }else{
-
-    showStrip();
+    handleKeep();
 
   }
 
-};
+}
 
 
-/* =====================================================
-   FINAL STRIP
-===================================================== */
+/* =========================
+   HOST HANDLES RETAKE
+========================= */
 
-window.showStrip = function(){
+async function handleRetake(){
 
-  showScreen("final");
+  await update(
+    ref(
+      database,
+      "rooms/" +
+      roomCode +
+      "/session"
+    ),
+    {
+      result:"retake"
+    }
+  );
 
-  selectStrips(selectedStrips);
 
-};
+  await sleep(800);
 
 
-/* =====================================================
-   CREATE STRIP
-===================================================== */
+  await update(
+    ref(
+      database,
+      "rooms/" +
+      roomCode +
+      "/session"
+    ),
+    {
+      captureAt:0,
 
-function createStripHTML(number){
+      captureNumber:photoNumber,
 
-  let photosHTML = "";
+      decision:{
+        host:"",
+        guest:""
+      },
 
-  for(let i = 0; i < 6; i++){
+      result:""
 
-    const photo =
-      capturedPhotos[i];
+    }
+  );
 
-    photosHTML += `
 
-      <div class="strip-photo">
+  decisionBeingProcessed = false;
 
-        ${
-          photo
-          ?
-          `<img src="${photo}" alt="Photo ${i+1}">`
-          :
-          `<div class="partner-placeholder">
-             PHOTO
-           </div>`
-        }
+  lastCaptureNumber =
+    photoNumber - 1;
 
-        <div class="partner-placeholder">
+  pendingPhoto = null;
+  pendingMotion = null;
 
-          <div>
-            PARTNER<br>
-            <small>COMING SOON</small>
-          </div>
+  showScreen(camera);
 
-        </div>
+}
 
+
+/* =========================
+   HOST HANDLES KEEP
+========================= */
+
+async function handleKeep(){
+
+  capturedPhotos[
+    photoNumber - 1
+  ] =
+    pendingPhoto;
+
+
+  capturedMotion[
+    photoNumber - 1
+  ] =
+    pendingMotion;
+
+
+  if(photoNumber >= 6){
+
+    await update(
+      ref(
+        database,
+        "rooms/" +
+        roomCode +
+        "/session"
+      ),
+      {
+        result:"finished"
+      }
+    );
+
+    await sleep(500);
+
+    showFinal();
+
+    decisionBeingProcessed = false;
+
+    return;
+
+  }
+
+
+  const nextPhoto =
+    photoNumber + 1;
+
+
+  await update(
+    ref(
+      database,
+      "rooms/" +
+      roomCode +
+      "/session"
+    ),
+    {
+
+      currentPhoto:
+        nextPhoto,
+
+      captureAt:0,
+
+      captureNumber:nextPhoto,
+
+      decision:{
+        host:"",
+        guest:""
+      },
+
+      result:""
+
+    }
+  );
+
+
+  photoNumber =
+    nextPhoto;
+
+  pendingPhoto = null;
+  pendingMotion = null;
+
+  lastCaptureNumber =
+    nextPhoto - 1;
+
+  decisionBeingProcessed = false;
+
+  document
+    .getElementById("photoProgress")
+    .textContent =
+      "PHOTO " +
+      photoNumber +
+      " / 6";
+
+  showScreen(camera);
+
+}
+
+
+/* =========================
+   NON-HOST SESSION LISTENER
+========================= */
+
+onValue(
+  ref(database),
+  snapshot => {
+
+    if(!roomCode || role === "host")
+      return;
+
+    const rooms =
+      snapshot.val()?.rooms;
+
+    if(!rooms)
+      return;
+
+    const roomData =
+      rooms[roomCode];
+
+    if(!roomData)
+      return;
+
+
+    const result =
+      roomData.session?.result || "";
+
+
+    if(result === "retake"){
+
+      pendingPhoto = null;
+      pendingMotion = null;
+
+      lastCaptureNumber =
+        photoNumber - 1;
+
+      document
+        .getElementById(
+          "decisionStatus"
+        )
+        .textContent =
+          "Retaking this moment...";
+
+      showScreen(camera);
+
+    }
+
+
+    if(result === "finished"){
+
+      showFinal();
+
+    }
+
+
+    const currentPhoto =
+      roomData.session?.currentPhoto;
+
+    if(
+      currentPhoto &&
+      currentPhoto !== photoNumber
+    ){
+
+      photoNumber =
+        currentPhoto;
+
+      document
+        .getElementById(
+          "photoProgress"
+        )
+        .textContent =
+          "PHOTO " +
+          photoNumber +
+          " / 6";
+
+    }
+
+  }
+);
+
+
+/* =========================
+   FINAL SCREEN
+========================= */
+
+function showFinal(){
+
+  showScreen(final);
+
+  createPhotoStrips();
+
+  createMotionStrip();
+
+}
+
+
+/* =========================
+   PHOTO STRIPS
+========================= */
+
+function createPhotoStrips(){
+
+  const container =
+    document.getElementById(
+      "stripsPreview"
+    );
+
+  container.innerHTML = "";
+
+  const count =
+    selectedStrips;
+
+  for(let s=0;s<count;s++){
+
+    const strip =
+      document.createElement("div");
+
+    strip.className =
+      "strip";
+
+    strip.innerHTML = `
+
+      <div class="strip-header">
+        MOMENT US
       </div>
+
+      ${capturedPhotos
+        .map(
+          (photo,index) => `
+
+            <div class="strip-photo">
+
+              ${
+                photo
+                  ? `<img
+                      src="${photo}"
+                      alt="Photo ${index+1} left">
+                     `
+                  : ""
+              }
+
+              ${
+                photo
+                  ? `<img
+                      src="${photo}"
+                      alt="Photo ${index+1} right">
+                     `
+                  : ""
+              }
+
+            </div>
+
+          `
+        )
+        .join("")}
 
     `;
 
+    container.appendChild(
+      strip
+    );
+
   }
-
-  return `
-
-    <div class="strip">
-
-      ${photosHTML}
-
-      <div class="strip-bottom">
-        MOMENT US • 2026 • STRIP ${number}
-      </div>
-
-    </div>
-
-  `;
 
 }
 
 
-/* =====================================================
-   SELECT 1 OR 2 STRIPS
-===================================================== */
+/* =========================
+   MOTION STRIP
+========================= */
 
-window.selectStrips = function(number){
+function createMotionStrip(){
 
-  selectedStrips = number;
-
-  const one =
-    document.getElementById("oneStrip");
-
-  const two =
-    document.getElementById("twoStrips");
-
-  const preview =
-    document.getElementById("stripsPreview");
-
-  one.classList.remove("selected");
-
-  two.classList.remove("selected");
-
-  if(number === 1){
-
-    one.classList.add("selected");
-
-    preview.innerHTML =
-      createStripHTML(1);
-
-  }else{
-
-    two.classList.add("selected");
-
-    preview.innerHTML =
-      createStripHTML(1) +
-      createStripHTML(2);
-
-  }
-
-};
-
-
-/* =====================================================
-   DOWNLOAD
-===================================================== */
-
-window.downloadStrip = function(){
-
-  if(capturedPhotos.length < 6){
-
-    alert(
-      "Please complete all 6 photos first."
+  const container =
+    document.getElementById(
+      "motionPreview"
     );
+
+  container.innerHTML = "";
+
+  const strip =
+    document.createElement("div");
+
+  strip.className =
+    "motion-strip";
+
+  strip.innerHTML = `
+
+    <div class="motion-title">
+      MOTION MOMENTS
+    </div>
+
+    ${capturedMotion
+      .map(
+        (motion,index) => `
+
+          <div class="motion-item">
+
+            ${
+              motion
+                ? `<video
+                    src="${motion}"
+                    controls
+                    loop
+                    muted
+                    playsinline>
+                   </video>`
+                : `
+                  <div style="
+                    color:white;
+                    height:100%;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    font-size:13px;
+                  ">
+                    MOMENT ${index+1}
+                  </div>
+                `
+            }
+
+          </div>
+
+        `
+      )
+      .join("")}
+
+  `;
+
+  container.appendChild(
+    strip
+  );
+
+}
+
+
+/* =========================
+   STRIP BUTTONS
+========================= */
+
+document
+  .getElementById("oneStripBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      selectedStrips = 1;
+
+      document
+        .getElementById(
+          "oneStripBtn"
+        )
+        .classList.add("selected");
+
+      document
+        .getElementById(
+          "twoStripBtn"
+        )
+        .classList.remove("selected");
+
+      createPhotoStrips();
+
+    }
+  );
+
+
+document
+  .getElementById("twoStripBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      selectedStrips = 2;
+
+      document
+        .getElementById(
+          "twoStripBtn"
+        )
+        .classList.add("selected");
+
+      document
+        .getElementById(
+          "oneStripBtn"
+        )
+        .classList.remove("selected");
+
+      createPhotoStrips();
+
+    }
+  );
+
+
+/* =========================
+   DOWNLOAD PHOTO STRIP
+========================= */
+
+document
+  .getElementById("downloadBtn")
+  .addEventListener(
+    "click",
+    downloadPhotoStrip
+  );
+
+
+async function downloadPhotoStrip(){
+
+  if(!capturedPhotos.length){
+
+    alert("There are no photos to download.");
 
     return;
 
   }
+
+
+  const width = 900;
+  const photoHeight = 450;
+
+  const headerHeight = 70;
 
   const canvas =
     document.createElement("canvas");
 
-  const width = 900;
-
-  const photoHeight = 500;
-
-  const footerHeight = 100;
-
-  canvas.width = width;
+  canvas.width =
+    width;
 
   canvas.height =
-    (photoHeight * 6) +
-    footerHeight;
+    headerHeight +
+    photoHeight * capturedPhotos.length +
+    30;
 
   const ctx =
     canvas.getContext("2d");
 
-  ctx.fillStyle = "#ffffff";
+
+  ctx.fillStyle =
+    "#ffffff";
 
   ctx.fillRect(
     0,
@@ -1703,124 +2748,154 @@ window.downloadStrip = function(){
     canvas.height
   );
 
-  let loaded = 0;
 
-  capturedPhotos.forEach(
-    (photo, index) => {
+  ctx.fillStyle =
+    "#171717";
 
-      const img =
-        new Image();
+  ctx.font =
+    "bold 25px Arial";
 
-      img.onload = () => {
+  ctx.textAlign =
+    "center";
 
-        ctx.drawImage(
-          img,
-          0,
-          index * photoHeight,
-          width,
-          photoHeight
-        );
+  ctx.fillText(
+    "MOMENT US",
+    width/2,
+    43
+  );
 
-        loaded++;
 
-        if(loaded === 6){
+  for(
+    let i=0;
+    i<capturedPhotos.length;
+    i++
+  ){
 
-          ctx.fillStyle =
-            "#ffffff";
+    const image =
+      new Image();
 
-          ctx.fillRect(
-            0,
-            photoHeight * 6,
-            width,
-            footerHeight
-          );
+    image.src =
+      capturedPhotos[i];
 
-          ctx.fillStyle =
-            "#111111";
+    await new Promise(
+      resolve => {
 
-          ctx.font =
-            "bold 28px Arial";
+        image.onload =
+          resolve;
 
-          ctx.textAlign =
-            "center";
+        image.onerror =
+          resolve;
 
-          ctx.fillText(
-            "MOMENT US • 2026",
-            width / 2,
-            photoHeight * 6 + 60
-          );
+      }
+    );
 
-          const link =
-            document.createElement("a");
 
-          link.download =
-            "moment-us-photo-strip.jpg";
+    const y =
+      headerHeight +
+      i * photoHeight;
 
-          link.href =
-            canvas.toDataURL(
-              "image/jpeg",
-              0.92
-            );
 
-          link.click();
+    if(image.width){
 
-        }
-
-      };
-
-      img.src = photo;
+      ctx.drawImage(
+        image,
+        0,
+        y,
+        width,
+        photoHeight
+      );
 
     }
 
-  );
-
-};
-
-
-/* =====================================================
-   START AGAIN
-===================================================== */
-
-window.startAgain = function(){
-
-  if(stream){
-
-    stream
-      .getTracks()
-      .forEach(track => track.stop());
-
-    stream = null;
-
   }
 
-  cameraStarted = false;
 
-  photoNumber = 1;
+  const link =
+    document.createElement("a");
 
-  selectedStrips = 1;
+  link.download =
+    "moment-us-photo-strip.jpg";
 
-  capturedPhotos = [];
+  link.href =
+    canvas.toDataURL(
+      "image/jpeg",
+      .95
+    );
 
-  capturedMotion = [];
+  link.click();
 
-  pendingPhoto = null;
-
-  roomCode = "";
-
-  role = "";
-
-  updatePhotoCounter();
-
-  showScreen("landing");
-
-};
+}
 
 
-/* =====================================================
-   INITIAL
-===================================================== */
+/* =========================
+   START AGAIN
+========================= */
 
-updatePhotoCounter();
+document
+  .getElementById("startAgainBtn")
+  .addEventListener(
+    "click",
+    async () => {
+
+      try{
+
+        if(stream){
+
+          stream
+            .getTracks()
+            .forEach(
+              track => track.stop()
+            );
+
+        }
+
+        if(peerConnection){
+
+          peerConnection.close();
+
+        }
+
+      }catch{}
+
+
+      roomCode = "";
+      role = "";
+
+      stream = null;
+      peerConnection = null;
+
+      cameraStarted = false;
+      connectionStarted = false;
+
+      photoNumber = 1;
+      lastCaptureNumber = 0;
+
+      capturedPhotos = [];
+      capturedMotion = [];
+
+      pendingPhoto = null;
+      pendingMotion = null;
+
+      decisionBeingProcessed = false;
+
+      document
+        .getElementById("createdRoom")
+        .style.display =
+          "none";
+
+      document
+        .getElementById("joinCode")
+        .value = "";
+
+      document
+        .getElementById("roomStatus")
+        .textContent =
+          "Waiting for a room...";
+
+      showScreen(landing);
+
+    }
+  );
 
 </script>
 
