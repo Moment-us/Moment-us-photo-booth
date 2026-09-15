@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moment Us Photo Booth</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f8f4ef;
+      color: #171717;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    /* NAVIGATION */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 0;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: #e85d75;
+    }
+
+    .nav-btn {
+      text-decoration: none;
+      color: white;
+      background: #171717;
+      padding: 10px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+      padding: 45px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: #fff;
+      border: 1px solid #e7ddd4;
+      padding: 8px 13px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(44px, 7vw, 76px);
+      line-height: 0.95;
+      letter-spacing: -4px;
+      margin-bottom: 25px;
+    }
+
+    h1 span {
+      color: #e85d75;
+    }
+
+    .hero-text {
+      max-width: 500px;
+      color: #666;
+      font-size: 17px;
+      margin-bottom: 28px;
+    }
+
+    .main-btn {
+      display: inline-block;
+      border: none;
+      background: #e85d75;
+      color: white;
+      padding: 16px 25px;
+      border-radius: 40px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(232, 93, 117, 0.22);
+      transition: 0.25s;
+    }
+
+    .main-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .price {
+      display: block;
+      margin-top: 13px;
+      color: #777;
+      font-size: 12px;
+    }
+
+    /* PHOTO BOOTH PREVIEW */
+    .preview-area {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .photo-strip {
+      width: 155px;
+      background: white;
+      padding: 10px 10px 17px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+      transform: rotate(-4deg);
+      transition: 0.3s;
+    }
+
+    .photo-strip:hover {
+      transform: rotate(-2deg) translateY(-8px);
+    }
+
+    .photo-strip.second {
+      transform: rotate(5deg);
+      margin-top: 35px;
+    }
+
+    .photo-strip.second:hover {
+      transform: rotate(3deg) translateY(-8px);
+    }
+
+    .photo {
+      height: 90px;
+      margin-bottom: 7px;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      background: linear-gradient(135deg, #ffd9df, #eee1d8);
+    }
+
+    .photo:nth-child(2) {
+      background: linear-gradient(135deg, #e8dff5, #f8dfe4);
+    }
+
+    .photo:nth-child(3) {
+      background: linear-gradient(135deg, #dceee8, #f7e5d4);
+    }
+
+    .photo:nth-child(4) {
+      background: linear-gradient(135deg, #f6e1c3, #e5e0f4);
+    }
+
+    .strip-label {
+      text-align: center;
+      font-size: 9px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-top: 8px;
+      color: #555;
+    }
+
+    /* INTRO */
+    .intro {
+      text-align: center;
+      padding: 70px 0;
+    }
+
+    .intro h2 {
+      font-size: clamp(30px, 5vw, 48px);
+      letter-spacing: -2px;
+      margin-bottom: 15px;
+    }
+
+    .intro p {
+      max-width: 600px;
+      margin: auto;
+      color: #666;
+    }
+
+    /* HOW IT WORKS */
+    .steps-section {
+      padding: 30px 0 90px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 36px;
+      letter-spacing: -1.5px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .step {
+      background: white;
+      border: 1px solid #eee4dc;
+      border-radius: 20px;
+      padding: 25px;
+    }
+
+    .step-number {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: #171717;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .step h3 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .step p {
+      color: #777;
+      font-size: 14px;
+    }
+
+    /* FEATURES */
+    .features {
+      background: #171717;
+      color: white;
+      padding: 80px 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .features h2 {
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+    }
+
+    .features p {
+      color: #bdbdbd;
+      max-width: 500px;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 13px;
+    }
+
+    .feature {
+      background: #242424;
+      border: 1px solid #333;
+      border-radius: 15px;
+      padding: 18px;
+    }
+
+    .feature strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .feature span {
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    /* FINAL CTA */
+    .final-cta {
+      text-align: center;
+      padding: 90px 0;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(35px, 6vw, 60px);
+      letter-spacing: -3px;
+      margin-bottom: 15px;
+    }
+
+    .final-cta p {
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 25px;
+      border-top: 1px solid #e6ddd5;
+      color: #888;
+      font-size: 12px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 750px) {
+
+      .hero {
+        padding-top: 25px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 55px;
+      }
+
+      h1 {
+        letter-spacing: -2.5px;
+      }
+
+      .preview-area {
+        transform: scale(0.9);
+      }
+
+      .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-btn {
+        padding: 8px 13px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-strip {
+        width: 135px;
+      }
+
+      .photo {
+        height: 78px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <nav>
+      <div class="logo">Moment <span>Us.</span> 📸</div>
+      <a href="#how" class="nav-btn">How it works</a>
+    </nav>
+
+    <section class="hero">
+
+      <div class="hero-grid">
+
+        <div>
+          <div class="eyebrow">A photo booth for people who aren't together</div>
+
+          <h1>
+            Miles apart.<br>
+            <span>One moment.</span>
+          </h1>
+
+          <p class="hero-text">
+            Take photos together even when you're in different places.
+            Connect, count down, pose, and create your own photo booth strip.
+          </p>
+
+          <a href="#how" class="main-btn">
+            CREATE A MOMENT
+          </a>
+
+          <span class="price">Just KSh 10 per session</span>
+        </div>
+
+        <div class="preview-area">
+
+          <!-- FIRST STRIP -->
+          <div class="photo-strip">
+
+            <div class="photo">👋</div>
+            <div class="photo">😂</div>
+            <div class="photo">🫶</div>
+            <div class="photo">📸</div>
+
+            <div class="strip-label">MOMENT US • 2026</div>
+
+          </div>
+
+          <!-- SECOND IDENTICAL STRIP -->
+          <div class="photo-strip second">
+
+            <div class="photo">👋</div>
+            <div class="photo">😂</div>
+            <div class="photo">🫶</div>
+            <div class="photo">📸</div>
+
+            <div class="strip-label">MOMENT US • 2026</div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+
+  <section class="intro">
+
+    <div class="container">
+
+      <h2>Not just a photo.<br>It's a moment.</h2>
+
+      <p>
+        Whether it's your partner, best friend, sibling, or someone
+        miles away, Moment Us lets you create something you can keep.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <section class="steps-section" id="how">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>How it works</h2>
+      </div>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Connect</h3>
+          <p>
+            Join the same photo booth session using a simple room code.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Pose</h3>
+          <p>
+            Both cameras get ready together. Then the countdown begins.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Capture</h3>
+          <p>
+            Take six synchronized photos and keep or retake each one.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Keep it</h3>
+          <p>
+            Create one or two identical strips, then download or print them.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="features">
+
+    <div class="container">
+
+      <div class="features-grid">
+
+        <div>
+
+          <h2>
+            Made for the moments you wish you could share.
+          </h2>
+
+          <p>
+            Moment Us brings the feeling of a real photo booth
+            to people who aren't physically in the same place.
+          </p>
+
+        </div>
+
+        <div class="feature-list">
+
+          <div class="feature">
+            <strong>📸 6 synchronized photos</strong>
+            <span>Both people capture the moment together.</span>
+          </div>
+
+          <div class="feature">
+            <strong>🎞️ Motion moments</strong>
+            <span>Keep a short moving memory around your photo.</span>
+          </div>
+
+          <div class="feature">
+            <strong>🖼️ 1 or 2 photo strips</strong>
+            <span>Keep one or give one to the person you're with.</span>
+          </div>
+
+          <div class="feature">
+            <strong>⬇️ Download or print</strong>
+            <span>Save your strip digitally or print a physical copy.</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="final-cta">
+
+    <div class="container">
+
+      <h2>Ready to make a moment?</h2>
+
+      <p>
+        Your next favorite memory could be six clicks away.
+      </p>
+
+      <a href="#how" class="main-btn">
+        CREATE A MOMENT — KSh 10
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <footer>
+    © 2026 Moment Us Photo Booth • Made for people who aren't together.
+  </footer>
+
+
+</body>
+</html>
