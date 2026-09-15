@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moment Us — Photo Booth</title>
+
+<title>Moment Us Photo Booth</title>
 
 <style>
 *{
@@ -14,7 +15,7 @@
 
 body{
   font-family:Arial, Helvetica, sans-serif;
-  background:#f7f3ed;
+  background:#f7f2eb;
   color:#171717;
   min-height:100vh;
 }
@@ -35,345 +36,269 @@ button{
 
 /* ================= LANDING ================= */
 
-.landing{
-  min-height:100vh;
-  padding:28px;
-  position:relative;
-  overflow:hidden;
-}
-
 .nav{
+  width:100%;
+  padding:22px 6%;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  max-width:1200px;
-  margin:auto;
 }
 
 .logo{
-  font-size:22px;
-  font-weight:900;
+  font-size:20px;
+  font-weight:800;
   letter-spacing:-1px;
 }
 
 .logo span{
-  font-size:15px;
-  margin-left:5px;
+  color:#e94d72;
 }
 
-.nav-tag{
+.nav-small{
   font-size:12px;
-  letter-spacing:1.5px;
+  letter-spacing:1px;
   text-transform:uppercase;
-  border:1px solid #171717;
-  border-radius:30px;
-  padding:9px 14px;
 }
 
 .hero{
-  max-width:1200px;
-  margin:70px auto 0;
+  min-height:78vh;
   display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:70px;
+  grid-template-columns:1fr 1fr;
   align-items:center;
+  gap:50px;
+  padding:50px 8%;
 }
 
-.kicker{
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:3px;
-  margin-bottom:20px;
-  font-weight:bold;
+.hero-text small{
+  display:inline-block;
+  border:1px solid #222;
+  padding:8px 13px;
+  border-radius:30px;
+  font-size:11px;
+  letter-spacing:1.5px;
+  margin-bottom:25px;
 }
 
 .hero h1{
-  font-size:clamp(58px,8vw,105px);
-  line-height:.88;
-  letter-spacing:-6px;
-  max-width:750px;
-}
-
-.hero h1 em{
   font-family:Georgia,serif;
-  font-weight:400;
+  font-size:clamp(50px,7vw,95px);
+  line-height:.9;
+  letter-spacing:-5px;
+  max-width:700px;
 }
 
-.hero-text{
-  font-size:18px;
+.hero h1 span{
+  color:#e94d72;
+}
+
+.hero p{
+  margin-top:28px;
+  max-width:480px;
+  font-size:17px;
   line-height:1.6;
-  max-width:500px;
-  margin:30px 0;
   color:#555;
 }
 
 .hero-buttons{
   display:flex;
   gap:12px;
+  margin-top:30px;
   flex-wrap:wrap;
 }
 
-.primary{
-  border:0;
+.primary-btn,
+.secondary-btn{
+  border-radius:50px;
+  padding:16px 25px;
+  border:1px solid #171717;
+  font-weight:700;
+}
+
+.primary-btn{
   background:#171717;
   color:white;
-  border-radius:50px;
-  padding:17px 27px;
-  font-weight:bold;
 }
 
-.secondary{
+.secondary-btn{
   background:transparent;
-  border:1px solid #171717;
-  border-radius:50px;
-  padding:17px 27px;
-  font-weight:bold;
+  color:#171717;
 }
 
-.primary:hover,
-.secondary:hover{
+.primary-btn:hover{
   transform:translateY(-2px);
 }
 
-/* Fake physical photo booth */
-
-.booth-card{
-  background:#fff;
-  padding:20px;
-  border-radius:25px;
-  transform:rotate(3deg);
-  box-shadow:0 25px 60px rgba(0,0,0,.12);
-}
-
-.booth-top{
-  background:#171717;
-  color:white;
-  padding:12px;
-  text-align:center;
-  border-radius:14px 14px 5px 5px;
-  font-size:12px;
-  letter-spacing:3px;
-}
-
-.fake-strip{
-  margin:18px auto;
-  width:72%;
-  background:white;
-  padding:9px;
-  box-shadow:0 5px 20px rgba(0,0,0,.12);
-}
-
-.fake-photo{
-  height:95px;
-  margin-bottom:7px;
+.preview{
   display:flex;
-  background:#ded8cf;
+  justify-content:center;
+}
+
+.fake-booth{
+  width:min(330px,90vw);
+  background:white;
+  padding:18px;
+  box-shadow:15px 18px 0 #e7d9cf;
+  transform:rotate(2deg);
+}
+
+.fake-screen{
+  aspect-ratio:4/5;
+  background:#ddd;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3px;
   overflow:hidden;
 }
 
-.fake-photo div{
-  width:50%;
+.fake-person{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:70px;
+  background:#eee7df;
+}
+
+.fake-caption{
+  text-align:center;
+  padding:15px 5px 3px;
+  font-size:11px;
+  letter-spacing:2px;
+}
+
+/* ================= GENERAL ================= */
+
+.center-page{
+  min-height:100vh;
+  padding:30px 20px;
   display:flex;
   justify-content:center;
   align-items:center;
-  font-size:30px;
-  border-right:2px solid white;
 }
 
-.fake-photo:last-child{
-  margin-bottom:0;
+.panel{
+  width:min(700px,100%);
+  background:white;
+  padding:35px;
+  border:1px solid #ddd;
+  box-shadow:10px 12px 0 #e8ddd4;
 }
 
-.strip-label{
-  text-align:center;
-  font-size:9px;
-  letter-spacing:2px;
-  margin-top:9px;
-}
-
-.features{
-  max-width:1200px;
-  margin:100px auto 0;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
-.feature{
-  border-top:1px solid #bbb;
-  padding-top:18px;
-}
-
-.feature-number{
-  font-size:11px;
-  color:#777;
-  margin-bottom:15px;
-}
-
-.feature h3{
-  font-size:20px;
-  margin-bottom:8px;
-}
-
-.feature p{
-  color:#666;
-  line-height:1.5;
-}
-
-/* ================= ROOM ================= */
-
-.room-page{
-  min-height:100vh;
-  padding:25px;
-  display:flex;
-  flex-direction:column;
-}
-
-.room-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  max-width:1000px;
-  width:100%;
-  margin:auto;
-}
-
-.back{
-  border:0;
-  background:none;
-  font-weight:bold;
-}
-
-.room-logo{
-  font-weight:900;
-}
-
-.room-content{
-  max-width:600px;
-  width:100%;
-  margin:70px auto;
-  text-align:center;
-}
-
-.room-content h2{
-  font-size:48px;
-  letter-spacing:-3px;
+.panel h2{
+  font-family:Georgia,serif;
+  font-size:42px;
   margin-bottom:12px;
 }
 
-.room-content p{
+.panel p{
   color:#666;
-  line-height:1.5;
+  line-height:1.6;
 }
 
-.room-box{
-  margin-top:35px;
-  background:white;
-  border-radius:25px;
-  padding:35px;
-  box-shadow:0 15px 50px rgba(0,0,0,.08);
-}
-
-.room-code{
-  font-size:45px;
-  letter-spacing:8px;
-  font-weight:900;
-  margin:20px 0;
-}
-
-.code-label{
-  font-size:11px;
-  letter-spacing:2px;
-  color:#777;
-  text-transform:uppercase;
+.back-btn{
+  border:0;
+  background:none;
+  margin-bottom:25px;
+  color:#666;
+  cursor:pointer;
 }
 
 .room-actions{
-  display:grid;
-  gap:12px;
+  margin-top:30px;
+}
+
+.code{
+  font-size:44px;
+  font-weight:900;
+  letter-spacing:8px;
+  text-align:center;
+  padding:22px;
+  margin:25px 0;
+  background:#f5eee8;
+}
+
+.status{
+  text-align:center;
+  margin-top:15px;
+  color:#555;
 }
 
 .input{
   width:100%;
   padding:17px;
-  border:1px solid #ccc;
-  border-radius:13px;
+  border:1px solid #bbb;
+  border-radius:8px;
   font-size:18px;
-  text-align:center;
-  letter-spacing:4px;
-  outline:none;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  margin:20px 0;
 }
 
-.status{
-  margin-top:20px;
-  padding:13px;
-  border-radius:12px;
-  background:#f2eee7;
-  font-size:14px;
+.full-btn{
+  width:100%;
+  padding:16px;
+  border-radius:50px;
+  border:1px solid #171717;
+  background:#171717;
+  color:white;
+  font-weight:bold;
 }
 
 /* ================= CAMERA ================= */
 
 .camera-page{
-  min-height:100vh;
   background:#111;
   color:white;
+  min-height:100vh;
   padding:20px;
 }
 
-.camera-header{
+.camera-top{
+  max-width:1000px;
+  margin:auto;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  max-width:1100px;
-  margin:auto;
+  padding:10px 0 20px;
 }
 
-.camera-brand{
-  font-weight:900;
-}
-
-.photo-count{
-  border:1px solid #555;
-  border-radius:30px;
-  padding:8px 15px;
+.photo-counter{
   font-size:13px;
+  letter-spacing:2px;
+  font-weight:bold;
 }
 
-.camera-stage{
-  max-width:1000px;
-  margin:35px auto 0;
+.motion-label{
+  font-size:11px;
+  color:#bbb;
+  letter-spacing:1px;
 }
 
-.camera-frame{
-  background:#000;
-  border:8px solid #282828;
-  border-radius:25px;
-  overflow:hidden;
+.camera-box{
+  max-width:900px;
+  margin:auto;
   position:relative;
-  aspect-ratio:16/9;
+  background:#222;
+  overflow:hidden;
+  border-radius:15px;
+  aspect-ratio:16/10;
 }
 
-video{
+#video{
   width:100%;
   height:100%;
   object-fit:cover;
   transform:scaleX(-1);
+  display:block;
 }
 
 .camera-placeholder{
   position:absolute;
   inset:0;
   display:flex;
-  align-items:center;
   justify-content:center;
-  flex-direction:column;
-  gap:15px;
-  background:#1b1b1b;
-}
-
-.camera-placeholder .camera-icon{
-  font-size:55px;
+  align-items:center;
+  text-align:center;
+  color:#aaa;
 }
 
 .countdown{
@@ -382,230 +307,231 @@ video{
   display:none;
   align-items:center;
   justify-content:center;
-  background:rgba(0,0,0,.35);
-  font-size:120px;
+  font-size:130px;
   font-weight:900;
+  background:rgba(0,0,0,.25);
   z-index:5;
 }
 
 .camera-controls{
-  text-align:center;
-  margin-top:25px;
+  max-width:900px;
+  margin:25px auto 0;
+  display:flex;
+  justify-content:center;
 }
 
-.capture{
-  width:76px;
-  height:76px;
+.capture-btn{
+  width:78px;
+  height:78px;
   border-radius:50%;
   border:7px solid white;
-  background:#ddd;
-  box-shadow:0 0 0 5px #555;
-}
-
-.camera-note{
-  margin-top:18px;
-  color:#999;
-  font-size:13px;
+  background:#e94d72;
+  box-shadow:0 0 0 4px #555;
 }
 
 /* ================= REVIEW ================= */
 
 .review-page{
   min-height:100vh;
-  padding:25px;
-  background:#f7f3ed;
+  padding:30px 20px;
+  background:#eee8e1;
 }
 
-.review-content{
-  max-width:800px;
-  margin:50px auto;
+.review-wrap{
+  width:min(700px,100%);
+  margin:auto;
   text-align:center;
 }
 
-.review-content h2{
-  font-size:45px;
-  letter-spacing:-2px;
+.review-wrap h2{
+  font-family:Georgia,serif;
+  font-size:42px;
+  margin-bottom:8px;
 }
 
-.review-photo{
-  max-width:650px;
-  margin:35px auto;
+.review-photo-box{
   background:white;
-  padding:12px;
-  box-shadow:0 20px 50px rgba(0,0,0,.12);
+  padding:15px;
+  margin:25px auto;
+  width:min(480px,100%);
+  box-shadow:8px 10px 0 #d9cec5;
 }
 
-.two-part-photo{
-  display:flex;
+#capturedPhoto{
   width:100%;
-  aspect-ratio:2/1;
-  overflow:hidden;
-  background:#ddd;
+  display:block;
+  aspect-ratio:4/3;
+  object-fit:cover;
 }
 
-.part{
-  width:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#d9d3ca;
-  font-size:60px;
-  border-right:2px solid white;
-}
-
-.part:last-child{
-  border:0;
-}
-
-.review-actions{
+.review-buttons{
   display:flex;
   justify-content:center;
   gap:12px;
+  flex-wrap:wrap;
+}
+
+.retake-btn,
+.keep-btn{
+  border-radius:50px;
+  padding:15px 30px;
+  font-weight:bold;
+}
+
+.retake-btn{
+  background:white;
+  border:1px solid #222;
+}
+
+.keep-btn{
+  background:#171717;
+  color:white;
+  border:1px solid #171717;
 }
 
 /* ================= FINAL ================= */
 
 .final-page{
   min-height:100vh;
-  padding:30px 20px 60px;
-  background:#eee9e1;
+  padding:30px 20px 70px;
 }
 
-.final-content{
+.final-wrap{
   max-width:1000px;
   margin:auto;
   text-align:center;
 }
 
-.final-content h1{
-  font-size:55px;
-  letter-spacing:-3px;
+.final-wrap h2{
+  font-family:Georgia,serif;
+  font-size:48px;
+  margin-bottom:10px;
 }
 
-.final-content p{
+.final-wrap p{
   color:#666;
-  margin:10px 0 30px;
+}
+
+.strip-options{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin:25px 0;
+}
+
+.strip-option{
+  border:1px solid #222;
+  background:white;
+  padding:12px 20px;
+  border-radius:50px;
+  font-weight:bold;
+}
+
+.strip-option.selected{
+  background:#171717;
+  color:white;
 }
 
 .strips-preview{
   display:flex;
   justify-content:center;
+  align-items:flex-start;
   gap:20px;
   flex-wrap:wrap;
-  align-items:flex-start;
+  margin-top:30px;
 }
 
 .strip{
-  width:220px;
+  width:190px;
   background:white;
   padding:9px;
-  box-shadow:0 20px 40px rgba(0,0,0,.16);
-  transition:.2s;
-}
-
-.strip.selected{
-  outline:4px solid #171717;
-  transform:translateY(-8px);
+  box-shadow:8px 9px 0 #dcd0c7;
 }
 
 .strip-photo{
   width:100%;
-  aspect-ratio:2/1;
-  display:flex;
-  background:#d8d2ca;
-  margin-bottom:6px;
+  aspect-ratio:1.35/1;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px;
+  margin-bottom:5px;
+  background:#ddd;
   overflow:hidden;
 }
 
-.strip-photo div{
-  width:50%;
+.strip-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.partner-placeholder{
+  background:#eee7df;
   display:flex;
   justify-content:center;
   align-items:center;
-  font-size:25px;
-  border-right:1px solid white;
-}
-
-.strip-photo div:last-child{
-  border:0;
+  color:#999;
+  font-size:11px;
+  text-align:center;
+  padding:5px;
 }
 
 .strip-bottom{
   font-size:8px;
-  letter-spacing:2px;
-  padding:6px;
+  letter-spacing:1.3px;
+  text-align:center;
+  padding:10px 2px 5px;
 }
 
-.selection{
-  margin:35px auto 20px;
+.final-buttons{
+  margin-top:35px;
   display:flex;
   justify-content:center;
   gap:10px;
+  flex-wrap:wrap;
 }
 
-.choice{
-  border:1px solid #aaa;
-  background:white;
-  padding:13px 25px;
-  border-radius:30px;
+.final-btn{
+  padding:15px 25px;
+  border-radius:50px;
+  border:1px solid #222;
+  background:#171717;
+  color:white;
   font-weight:bold;
 }
 
-.choice.selected{
-  background:#171717;
-  color:white;
-  border-color:#171717;
-}
-
-.final-actions{
-  margin-top:25px;
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
+.final-btn.light{
+  background:white;
+  color:#171717;
 }
 
 /* ================= MOBILE ================= */
 
 @media(max-width:800px){
 
-  .landing{
-    padding:20px;
-  }
-
   .hero{
     grid-template-columns:1fr;
-    margin-top:55px;
-    gap:50px;
+    padding-top:30px;
   }
 
   .hero h1{
-    font-size:62px;
-    letter-spacing:-4px;
+    font-size:58px;
+    letter-spacing:-3px;
   }
 
-  .features{
-    grid-template-columns:1fr;
-    margin-top:70px;
+  .preview{
+    margin-top:10px;
   }
 
-  .booth-card{
-    transform:rotate(2deg);
+  .panel{
+    padding:25px 20px;
   }
 
-  .room-content h2{
-    font-size:40px;
+  .panel h2{
+    font-size:34px;
   }
 
-  .room-box{
-    padding:25px 18px;
-  }
-
-  .room-code{
-    font-size:35px;
-  }
-
-  .camera-frame{
+  .camera-box{
     aspect-ratio:3/4;
   }
 
@@ -613,12 +539,12 @@ video{
     font-size:90px;
   }
 
-  .final-content h1{
-    font-size:45px;
+  .final-wrap h2{
+    font-size:38px;
   }
 
   .strip{
-    width:180px;
+    width:170px;
   }
 }
 </style>
@@ -629,325 +555,265 @@ video{
 <!-- ================= LANDING ================= -->
 
 <section id="landing" class="screen active">
-<div class="landing">
 
   <nav class="nav">
-    <div class="logo">moment us <span>📸</span></div>
-    <div class="nav-tag">virtual photo booth</div>
+    <div class="logo">moment <span>us</span> 📸</div>
+    <div class="nav-small">virtual photo booth</div>
   </nav>
 
-  <main class="hero">
+  <div class="hero">
 
-    <div>
-      <div class="kicker">For people who can't be in the same place</div>
+    <div class="hero-text">
+
+      <small>FOR PEOPLE WHO AREN'T IN THE SAME PLACE</small>
 
       <h1>
         Miles apart.<br>
-        <em>One moment.</em>
+        One <span>moment.</span>
       </h1>
 
-      <p class="hero-text">
-        A virtual photo booth for you and your favorite people.
-        Take pictures together, even when you're not together.
+      <p>
+        A virtual photo booth for couples, friends, siblings
+        and anyone who wants to make a memory together —
+        even when they're far apart.
       </p>
 
       <div class="hero-buttons">
-        <button class="primary" onclick="openCreate()">
-          CREATE A MOMENT →
+        <button class="primary-btn" onclick="openCreate()">
+          CREATE A MOMENT
         </button>
 
-        <button class="secondary" onclick="openJoin()">
+        <button class="secondary-btn" onclick="openJoin()">
           JOIN A MOMENT
         </button>
       </div>
+
     </div>
 
-    <div class="booth-card">
-      <div class="booth-top">MOMENT US PHOTO BOOTH</div>
+    <div class="preview">
 
-      <div class="fake-strip">
+      <div class="fake-booth">
 
-        <div class="fake-photo">
-          <div>☺</div>
-          <div>☺</div>
+        <div class="fake-screen">
+          <div class="fake-person">🙂</div>
+          <div class="fake-person">😄</div>
         </div>
 
-        <div class="fake-photo">
-          <div>♡</div>
-          <div>♡</div>
+        <div class="fake-caption">
+          MOMENT US • TAKE IT TOGETHER
         </div>
-
-        <div class="fake-photo">
-          <div>✦</div>
-          <div>✦</div>
-        </div>
-
-        <div class="fake-photo">
-          <div>☺</div>
-          <div>☺</div>
-        </div>
-
-        <div class="strip-label">MOMENT US • 2026</div>
 
       </div>
-    </div>
 
-  </main>
-
-  <div class="features">
-
-    <div class="feature">
-      <div class="feature-number">01</div>
-      <h3>Connect</h3>
-      <p>Create a room and send the code to your person.</p>
-    </div>
-
-    <div class="feature">
-      <div class="feature-number">02</div>
-      <h3>Pose</h3>
-      <p>Get ready for the countdown and capture the moment.</p>
-    </div>
-
-    <div class="feature">
-      <div class="feature-number">03</div>
-      <h3>Keep it</h3>
-      <p>Turn your moments into a classic photo booth strip.</p>
     </div>
 
   </div>
 
-</div>
 </section>
 
 
 <!-- ================= ROOM ================= -->
 
 <section id="room" class="screen">
-<div class="room-page">
 
-  <div class="room-header">
-    <button class="back" onclick="goHome()">← Back</button>
-    <div class="room-logo">moment us 📸</div>
-    <div></div>
-  </div>
+  <div class="center-page">
 
-  <div class="room-content">
+    <div class="panel">
 
-    <h2 id="roomTitle">Create your moment.</h2>
+      <button class="back-btn" onclick="showScreen('landing')">
+        ← Back
+      </button>
 
-    <p id="roomDescription">
-      Create a room and invite someone to join you.
-    </p>
+      <h2 id="roomTitle">Create your moment.</h2>
 
-    <div class="room-box">
+      <p id="roomDescription">
+        Create a room and send the code to your person.
+      </p>
 
-      <div id="createArea">
+      <!-- CREATE -->
 
-        <div class="code-label">Your room code</div>
+      <div id="createArea" class="room-actions">
 
-        <div id="roomCodeDisplay" class="room-code">
+        <div id="roomCodeDisplay" class="code">
           ------
         </div>
 
-        <button class="primary" onclick="createRoom()">
+        <button class="full-btn" onclick="createRoom()">
           CREATE ROOM
         </button>
 
       </div>
 
-      <div id="joinArea" style="display:none;">
+      <!-- JOIN -->
+
+      <div id="joinArea" class="room-actions" style="display:none">
 
         <input
           id="joinCode"
           class="input"
           maxlength="6"
           placeholder="ENTER CODE"
-          autocomplete="off"
         >
 
-        <br><br>
-
-        <button class="primary" onclick="joinRoom()">
+        <button class="full-btn" onclick="joinRoom()">
           JOIN ROOM
         </button>
 
       </div>
 
       <div id="roomStatus" class="status">
-        Waiting to connect...
+        Tap CREATE ROOM to begin.
       </div>
 
     </div>
 
   </div>
 
-</div>
 </section>
 
 
 <!-- ================= CAMERA ================= -->
 
-<section id="camera" class="screen">
-<div class="camera-page">
+<section id="camera" class="screen camera-page">
 
-  <div class="camera-header">
-    <div class="camera-brand">moment us 📸</div>
-    <div class="photo-count">
-      PHOTO <span id="photoNumber">1</span> / 6
-    </div>
-  </div>
+  <div class="camera-top">
 
-  <div class="camera-stage">
-
-    <div class="camera-frame">
-
-      <video id="video" autoplay playsinline></video>
-
-      <div id="cameraPlaceholder" class="camera-placeholder">
-        <div class="camera-icon">📸</div>
-        <div>Camera ready</div>
+    <div>
+      <div id="photoCounter" class="photo-counter">
+        PHOTO 1 / 6
       </div>
 
-      <div id="countdown" class="countdown"></div>
-
+      <div class="motion-label">
+        GET READY — YOUR LAST MOMENT WILL BE CAPTURED
+      </div>
     </div>
 
-    <div class="camera-controls">
-
-      <button class="capture" onclick="startCountdown()"></button>
-
-      <div class="camera-note">
-        Tap the button when you're ready.
-      </div>
-
+    <div>
+      MOMENT US 📸
     </div>
 
   </div>
 
-</div>
+
+  <div class="camera-box">
+
+    <video
+      id="video"
+      autoplay
+      playsinline
+      muted>
+    </video>
+
+    <div id="cameraPlaceholder" class="camera-placeholder">
+      Allow camera access to continue.
+    </div>
+
+    <div id="countdown" class="countdown">
+      3
+    </div>
+
+  </div>
+
+
+  <div class="camera-controls">
+
+    <button
+      class="capture-btn"
+      onclick="startCountdown()">
+    </button>
+
+  </div>
+
 </section>
 
 
 <!-- ================= REVIEW ================= -->
 
-<section id="review" class="screen">
-<div class="review-page">
+<section id="review" class="screen review-page">
 
-  <div class="review-content">
+  <div class="review-wrap">
 
     <h2>Keep this moment?</h2>
 
-    <p style="margin-top:10px;color:#666;">
-      You can retake it or keep it for your strip.
+    <p id="reviewCounter">
+      PHOTO 1 / 6
     </p>
 
-    <div class="review-photo">
+    <div class="review-photo-box">
 
-      <div class="two-part-photo">
-        <div class="part">📸</div>
-        <div class="part">📸</div>
-      </div>
+      <img
+        id="capturedPhoto"
+        alt="Captured photo">
 
     </div>
 
-    <div class="review-actions">
+    <div class="review-buttons">
 
-      <button class="secondary" onclick="retakePhoto()">
+      <button
+        class="retake-btn"
+        onclick="retakePhoto()">
         RETAKE
       </button>
 
-      <button class="primary" onclick="keepPhoto()">
-        KEEP →
+      <button
+        class="keep-btn"
+        onclick="keepPhoto()">
+        KEEP PHOTO
       </button>
 
     </div>
 
   </div>
 
-</div>
 </section>
 
 
 <!-- ================= FINAL ================= -->
 
-<section id="final" class="screen">
-<div class="final-page">
+<section id="final" class="screen final-page">
 
-  <div class="final-content">
+  <div class="final-wrap">
 
-    <h1>Your moment. ✨</h1>
+    <h2>Your moment is ready.</h2>
 
     <p>
-      Six little moments. One memory.
+      Six memories. One little photo booth.
     </p>
 
-    <div id="stripsPreview" class="strips-preview">
-
-      <div id="strip1" class="strip selected">
-
-        <div class="strip-photo">
-          <div>☺</div><div>☺</div>
-        </div>
-
-        <div class="strip-photo">
-          <div>♡</div><div>♡</div>
-        </div>
-
-        <div class="strip-photo">
-          <div>✦</div><div>✦</div>
-        </div>
-
-        <div class="strip-photo">
-          <div>☺</div><div>☺</div>
-        </div>
-
-        <div class="strip-photo">
-          <div>♡</div><div>♡</div>
-        </div>
-
-        <div class="strip-photo">
-          <div>✦</div><div>✦</div>
-        </div>
-
-        <div class="strip-bottom">
-          MOMENT US • 2026
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="selection">
+    <div class="strip-options">
 
       <button
         id="oneStrip"
-        class="choice selected"
-        onclick="selectStrips(1)"
-      >
+        class="strip-option selected"
+        onclick="selectStrips(1)">
         1 STRIP
       </button>
 
       <button
         id="twoStrips"
-        class="choice"
-        onclick="selectStrips(2)"
-      >
+        class="strip-option"
+        onclick="selectStrips(2)">
         2 STRIPS
       </button>
 
     </div>
 
-    <div class="final-actions">
+    <div
+      id="stripsPreview"
+      class="strips-preview">
+    </div>
 
-      <button class="primary" onclick="downloadStrip()">
-        SAVE MY STRIP ↓
+    <div class="final-buttons">
+
+      <button
+        class="final-btn"
+        onclick="downloadStrip()">
+        DOWNLOAD
       </button>
 
-      <button class="secondary" onclick="window.print()">
-        PRINT
-      </button>
-
-      <button class="secondary" onclick="startAgain()">
+      <button
+        class="final-btn light"
+        onclick="startAgain()">
         START AGAIN
       </button>
 
@@ -955,16 +821,22 @@ video{
 
   </div>
 
-</div>
 </section>
+
+
+<!-- Hidden canvas used to capture photos -->
+<canvas id="captureCanvas" style="display:none"></canvas>
 
 
 <script type="module">
 
-/* ================= FIREBASE ================= */
+/* =====================================================
+   FIREBASE
+===================================================== */
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
 import {
   getDatabase,
@@ -973,45 +845,89 @@ import {
   get,
   update,
   onValue
-}
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
 
 const firebaseConfig = {
+
   apiKey: "AIzaSyDpl5yW3LYEjjwEB3U1KlTEU3iNCroaLLI",
-  authDomain: "moment-us-photo-booth.firebaseapp.com",
-  databaseURL: "https://moment-us-photo-booth-default-rtdb.firebaseio.com",
-  projectId: "moment-us-photo-booth",
-  storageBucket: "moment-us-photo-booth.firebasestorage.app",
-  messagingSenderId: "750391561895",
-  appId: "1:750391561895:web:fd8c22191f3a16d56b5582"
+
+  authDomain:
+    "moment-us-photo-booth.firebaseapp.com",
+
+  databaseURL:
+    "https://moment-us-photo-booth-default-rtdb.firebaseio.com",
+
+  projectId:
+    "moment-us-photo-booth",
+
+  storageBucket:
+    "moment-us-photo-booth.firebasestorage.app",
+
+  messagingSenderId:
+    "750391561895",
+
+  appId:
+    "1:750391561895:web:fd8c22191f3a16d56b5582"
 };
 
+
 const app = initializeApp(firebaseConfig);
+
 const database = getDatabase(app);
 
 
-/* ================= VARIABLES ================= */
+/* =====================================================
+   VARIABLES
+===================================================== */
 
 let roomCode = "";
+
 let role = "";
-let photoNumber = 1;
-let selectedStrips = 1;
+
 let stream = null;
 
+let cameraStarted = false;
 
-/* ================= SCREEN CONTROL ================= */
+let photoNumber = 1;
 
-function showScreen(id){
+let selectedStrips = 1;
 
-  document.querySelectorAll(".screen").forEach(screen=>{
-    screen.classList.remove("active");
-  });
+let capturedPhotos = [];
 
-  document.getElementById(id).classList.add("active");
-}
+let capturedMotion = [];
+
+let motionRecorder = null;
+
+let motionChunks = [];
+
+let motionTimer = null;
+
+let pendingPhoto = null;
 
 
-/* ================= LANDING ================= */
+/* =====================================================
+   SCREEN
+===================================================== */
+
+window.showScreen = function(id){
+
+  document
+    .querySelectorAll(".screen")
+    .forEach(screen => {
+      screen.classList.remove("active");
+    });
+
+  document
+    .getElementById(id)
+    .classList.add("active");
+
+};
+
+
+/* =====================================================
+   LANDING
+===================================================== */
 
 window.openCreate = function(){
 
@@ -1021,15 +937,20 @@ window.openCreate = function(){
   document.getElementById("roomDescription").textContent =
     "Create a room and send the code to your person.";
 
-  document.getElementById("createArea").style.display = "block";
-  document.getElementById("joinArea").style.display = "none";
+  document.getElementById("createArea").style.display =
+    "block";
 
-  document.getElementById("roomCodeDisplay").textContent = "------";
+  document.getElementById("joinArea").style.display =
+    "none";
+
+  document.getElementById("roomCodeDisplay").textContent =
+    "------";
 
   document.getElementById("roomStatus").textContent =
     "Tap CREATE ROOM to begin.";
 
   showScreen("room");
+
 };
 
 
@@ -1041,22 +962,23 @@ window.openJoin = function(){
   document.getElementById("roomDescription").textContent =
     "Enter the six-character code your person sent you.";
 
-  document.getElementById("createArea").style.display = "none";
-  document.getElementById("joinArea").style.display = "block";
+  document.getElementById("createArea").style.display =
+    "none";
+
+  document.getElementById("joinArea").style.display =
+    "block";
 
   document.getElementById("roomStatus").textContent =
     "Enter your room code.";
 
   showScreen("room");
+
 };
 
 
-window.goHome = function(){
-  showScreen("landing");
-};
-
-
-/* ================= ROOM CODE ================= */
+/* =====================================================
+   ROOM CODE
+===================================================== */
 
 function generateCode(){
 
@@ -1065,43 +987,56 @@ function generateCode(){
 
   let code = "";
 
-  for(let i=0;i<6;i++){
+  for(let i = 0; i < 6; i++){
+
     code += characters[
-      Math.floor(Math.random()*characters.length)
+      Math.floor(
+        Math.random() * characters.length
+      )
     ];
+
   }
 
   return code;
+
 }
 
 
-/* ================= CREATE ROOM ================= */
+/* =====================================================
+   CREATE ROOM
+===================================================== */
 
 window.createRoom = async function(){
 
   const status =
     document.getElementById("roomStatus");
 
-  status.textContent = "Creating your room...";
+  status.textContent =
+    "Creating your room...";
 
   try{
 
     roomCode = generateCode();
+
     role = "host";
 
     const roomRef =
-      ref(database,"rooms/" + roomCode);
+      ref(database, "rooms/" + roomCode);
 
-    await set(roomRef,{
+    await set(roomRef, {
 
       host:true,
+
       guest:false,
+
       status:"waiting",
+
       createdAt:Date.now()
 
     });
 
-    document.getElementById("roomCodeDisplay")
+    document
+      .getElementById("roomCodeDisplay")
       .textContent = roomCode;
 
     status.textContent =
@@ -1114,14 +1049,17 @@ window.createRoom = async function(){
     console.error(error);
 
     status.textContent =
-      "Something went wrong: " + error.message;
+      "Something went wrong: " +
+      error.message;
 
   }
 
 };
 
 
-/* ================= JOIN ROOM ================= */
+/* =====================================================
+   JOIN ROOM
+===================================================== */
 
 window.joinRoom = async function(){
 
@@ -1129,7 +1067,8 @@ window.joinRoom = async function(){
     document.getElementById("roomStatus");
 
   const input =
-    document.getElementById("joinCode")
+    document
+      .getElementById("joinCode")
       .value
       .trim()
       .toUpperCase();
@@ -1140,14 +1079,16 @@ window.joinRoom = async function(){
       "Please enter the 6-character room code.";
 
     return;
+
   }
 
-  status.textContent = "Looking for the room...";
+  status.textContent =
+    "Looking for the room...";
 
   try{
 
     const roomRef =
-      ref(database,"rooms/" + input);
+      ref(database, "rooms/" + input);
 
     const snapshot =
       await get(roomRef);
@@ -1158,9 +1099,11 @@ window.joinRoom = async function(){
         "Room not found. Check the code.";
 
       return;
+
     }
 
-    const room = snapshot.val();
+    const room =
+      snapshot.val();
 
     if(room.guest === true){
 
@@ -1168,14 +1111,17 @@ window.joinRoom = async function(){
         "Someone has already joined this room.";
 
       return;
+
     }
 
     roomCode = input;
+
     role = "guest";
 
-    await update(roomRef,{
+    await update(roomRef, {
 
       guest:true,
+
       status:"connected"
 
     });
@@ -1190,37 +1136,48 @@ window.joinRoom = async function(){
     console.error(error);
 
     status.textContent =
-      "Something went wrong: " + error.message;
+      "Something went wrong: " +
+      error.message;
 
   }
 
 };
 
 
-/* ================= ROOM LISTENER ================= */
+/* =====================================================
+   LISTEN FOR PARTNER
+===================================================== */
 
 function listenToRoom(){
 
   const roomRef =
-    ref(database,"rooms/" + roomCode);
+    ref(database, "rooms/" + roomCode);
 
-  onValue(roomRef,(snapshot)=>{
+  onValue(roomRef, snapshot => {
 
     if(!snapshot.exists()) return;
 
     const room = snapshot.val();
 
-    if(room.host === true && room.guest === true){
+    if(
+      room.host === true &&
+      room.guest === true
+    ){
 
-      document.getElementById("roomStatus")
+      document
+        .getElementById("roomStatus")
         .textContent =
         "Both people are connected! 🎉";
 
-      setTimeout(()=>{
+      if(!cameraStarted){
 
-        startCamera();
+        setTimeout(() => {
 
-      },1000);
+          startCamera();
+
+        }, 800);
+
+      }
 
     }
 
@@ -1229,9 +1186,19 @@ function listenToRoom(){
 }
 
 
-/* ================= CAMERA ================= */
+/* =====================================================
+   CAMERA
+===================================================== */
 
 window.startCamera = async function(){
+
+  if(cameraStarted && stream){
+
+    showScreen("camera");
+
+    return;
+
+  }
 
   showScreen("camera");
 
@@ -1241,7 +1208,13 @@ window.startCamera = async function(){
       await navigator.mediaDevices.getUserMedia({
 
         video:{
-          facingMode:"user"
+          facingMode:"user",
+          width:{
+            ideal:1280
+          },
+          height:{
+            ideal:720
+          }
         },
 
         audio:false
@@ -1253,29 +1226,66 @@ window.startCamera = async function(){
 
     video.srcObject = stream;
 
-    document.getElementById(
-      "cameraPlaceholder"
-    ).style.display = "none";
+    await video.play();
+
+    cameraStarted = true;
+
+    document
+      .getElementById("cameraPlaceholder")
+      .style.display = "none";
+
+    updatePhotoCounter();
 
   }catch(error){
 
     console.error(error);
 
-    document.getElementById(
-      "cameraPlaceholder"
-    ).innerHTML = `
-      <div class="camera-icon">⚠️</div>
-      <div>Please allow camera access.</div>
-    `;
+    document
+      .getElementById("cameraPlaceholder")
+      .innerHTML = `
+        <div>
+          ⚠️<br><br>
+          Please allow camera access.
+        </div>
+      `;
 
   }
 
 };
 
 
-/* ================= COUNTDOWN ================= */
+/* =====================================================
+   PHOTO COUNTER
+===================================================== */
+
+function updatePhotoCounter(){
+
+  document
+    .getElementById("photoCounter")
+    .textContent =
+    "PHOTO " + photoNumber + " / 6";
+
+  document
+    .getElementById("reviewCounter")
+    .textContent =
+    "PHOTO " + photoNumber + " / 6";
+
+}
+
+
+/* =====================================================
+   START COUNTDOWN
+===================================================== */
 
 window.startCountdown = function(){
+
+  if(!stream){
+
+    alert("Please allow your camera first.");
+
+    return;
+
+  }
 
   const countdown =
     document.getElementById("countdown");
@@ -1286,61 +1296,245 @@ window.startCountdown = function(){
 
   countdown.textContent = number;
 
+  /* Start recording the little movement
+     BEFORE the final photo. */
+
+  startMotionCapture();
+
   const timer =
-    setInterval(()=>{
+    setInterval(() => {
 
       number--;
 
       if(number > 0){
 
-        countdown.textContent = number;
+        countdown.textContent =
+          number;
 
       }else{
 
         clearInterval(timer);
 
-        countdown.textContent = "📸";
+        countdown.textContent =
+          "📸";
 
-        setTimeout(()=>{
+        setTimeout(() => {
 
-          countdown.style.display = "none";
+          capturePhoto();
 
-          showReview();
+          countdown.style.display =
+            "none";
 
-        },600);
+        }, 450);
 
       }
 
-    },1000);
+    }, 700);
 
 };
 
 
-/* ================= REVIEW ================= */
+/* =====================================================
+   MOTION CAPTURE
+===================================================== */
 
-function showReview(){
+function startMotionCapture(){
+
+  if(!stream) return;
+
+  if(
+    typeof MediaRecorder === "undefined"
+  ){
+
+    return;
+
+  }
+
+  try{
+
+    motionChunks = [];
+
+    motionRecorder =
+      new MediaRecorder(stream);
+
+    motionRecorder.ondataavailable =
+      event => {
+
+        if(event.data.size > 0){
+
+          motionChunks.push(event.data);
+
+        }
+
+      };
+
+    motionRecorder.onstop =
+      () => {
+
+        if(motionChunks.length === 0){
+
+          return;
+
+        }
+
+        const blob =
+          new Blob(
+            motionChunks,
+            {type:"video/webm"}
+          );
+
+        const url =
+          URL.createObjectURL(blob);
+
+        capturedMotion[photoNumber - 1] =
+          url;
+
+      };
+
+    motionRecorder.start();
+
+    /* We keep recording for a short moment.
+       The actual photo is captured at the end
+       of this countdown. */
+
+    motionTimer =
+      setTimeout(() => {
+
+        if(
+          motionRecorder &&
+          motionRecorder.state !== "inactive"
+        ){
+
+          motionRecorder.stop();
+
+        }
+
+      }, 2100);
+
+  }catch(error){
+
+    console.log(
+      "Motion capture unavailable",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   CAPTURE REAL PHOTO
+===================================================== */
+
+function capturePhoto(){
+
+  const video =
+    document.getElementById("video");
+
+  const canvas =
+    document.getElementById("captureCanvas");
+
+  if(
+    !video ||
+    video.readyState < 2
+  ){
+
+    alert("Camera is not ready yet.");
+
+    return;
+
+  }
+
+  const width =
+    video.videoWidth;
+
+  const height =
+    video.videoHeight;
+
+  canvas.width = width;
+
+  canvas.height = height;
+
+  const context =
+    canvas.getContext("2d");
+
+  /* Mirror the captured image so
+     it looks like the camera preview. */
+
+  context.save();
+
+  context.translate(width, 0);
+
+  context.scale(-1, 1);
+
+  context.drawImage(
+    video,
+    0,
+    0,
+    width,
+    height
+  );
+
+  context.restore();
+
+  pendingPhoto =
+    canvas.toDataURL(
+      "image/jpeg",
+      0.92
+    );
+
+  document
+    .getElementById("capturedPhoto")
+    .src = pendingPhoto;
+
+  document
+    .getElementById("reviewCounter")
+    .textContent =
+    "PHOTO " + photoNumber + " / 6";
 
   showScreen("review");
 
 }
 
 
+/* =====================================================
+   RETAKE
+===================================================== */
+
 window.retakePhoto = function(){
+
+  pendingPhoto = null;
+
+  updatePhotoCounter();
 
   showScreen("camera");
 
 };
 
 
+/* =====================================================
+   KEEP PHOTO
+===================================================== */
+
 window.keepPhoto = function(){
+
+  if(!pendingPhoto){
+
+    return;
+
+  }
+
+  capturedPhotos[photoNumber - 1] =
+    pendingPhoto;
+
+  pendingPhoto = null;
 
   if(photoNumber < 6){
 
     photoNumber++;
 
-    document.getElementById(
-      "photoNumber"
-    ).textContent = photoNumber;
+    updatePhotoCounter();
 
     showScreen("camera");
 
@@ -1353,18 +1547,81 @@ window.keepPhoto = function(){
 };
 
 
-/* ================= FINAL STRIP ================= */
+/* =====================================================
+   FINAL STRIP
+===================================================== */
 
 window.showStrip = function(){
 
-  photoNumber = 1;
-
   showScreen("final");
+
+  selectStrips(selectedStrips);
 
 };
 
 
-/* ================= STRIP SELECTION ================= */
+/* =====================================================
+   CREATE STRIP
+===================================================== */
+
+function createStripHTML(number){
+
+  let photosHTML = "";
+
+  for(let i = 0; i < 6; i++){
+
+    const photo =
+      capturedPhotos[i];
+
+    photosHTML += `
+
+      <div class="strip-photo">
+
+        ${
+          photo
+          ?
+          `<img src="${photo}" alt="Photo ${i+1}">`
+          :
+          `<div class="partner-placeholder">
+             PHOTO
+           </div>`
+        }
+
+        <div class="partner-placeholder">
+
+          <div>
+            PARTNER<br>
+            <small>COMING SOON</small>
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+  return `
+
+    <div class="strip">
+
+      ${photosHTML}
+
+      <div class="strip-bottom">
+        MOMENT US • 2026 • STRIP ${number}
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   SELECT 1 OR 2 STRIPS
+===================================================== */
 
 window.selectStrips = function(number){
 
@@ -1380,13 +1637,15 @@ window.selectStrips = function(number){
     document.getElementById("stripsPreview");
 
   one.classList.remove("selected");
+
   two.classList.remove("selected");
 
   if(number === 1){
 
     one.classList.add("selected");
 
-    preview.innerHTML = createStripHTML(1);
+    preview.innerHTML =
+      createStripHTML(1);
 
   }else{
 
@@ -1401,86 +1660,167 @@ window.selectStrips = function(number){
 };
 
 
-/* ================= CREATE VISUAL STRIP ================= */
-
-function createStripHTML(number){
-
-  return `
-
-    <div class="strip">
-
-      <div class="strip-photo">
-        <div>☺</div>
-        <div>☺</div>
-      </div>
-
-      <div class="strip-photo">
-        <div>♡</div>
-        <div>♡</div>
-      </div>
-
-      <div class="strip-photo">
-        <div>✦</div>
-        <div>✦</div>
-      </div>
-
-      <div class="strip-photo">
-        <div>☺</div>
-        <div>☺</div>
-      </div>
-
-      <div class="strip-photo">
-        <div>♡</div>
-        <div>♡</div>
-      </div>
-
-      <div class="strip-photo">
-        <div>✦</div>
-        <div>✦</div>
-      </div>
-
-      <div class="strip-bottom">
-        MOMENT US • 2026 • STRIP ${number}
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-/* ================= DOWNLOAD ================= */
+/* =====================================================
+   DOWNLOAD
+===================================================== */
 
 window.downloadStrip = function(){
 
-  alert(
-    "Your photo strip download will be connected to the real captured photos when the two-device camera system is added."
+  if(capturedPhotos.length < 6){
+
+    alert(
+      "Please complete all 6 photos first."
+    );
+
+    return;
+
+  }
+
+  const canvas =
+    document.createElement("canvas");
+
+  const width = 900;
+
+  const photoHeight = 500;
+
+  const footerHeight = 100;
+
+  canvas.width = width;
+
+  canvas.height =
+    (photoHeight * 6) +
+    footerHeight;
+
+  const ctx =
+    canvas.getContext("2d");
+
+  ctx.fillStyle = "#ffffff";
+
+  ctx.fillRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  let loaded = 0;
+
+  capturedPhotos.forEach(
+    (photo, index) => {
+
+      const img =
+        new Image();
+
+      img.onload = () => {
+
+        ctx.drawImage(
+          img,
+          0,
+          index * photoHeight,
+          width,
+          photoHeight
+        );
+
+        loaded++;
+
+        if(loaded === 6){
+
+          ctx.fillStyle =
+            "#ffffff";
+
+          ctx.fillRect(
+            0,
+            photoHeight * 6,
+            width,
+            footerHeight
+          );
+
+          ctx.fillStyle =
+            "#111111";
+
+          ctx.font =
+            "bold 28px Arial";
+
+          ctx.textAlign =
+            "center";
+
+          ctx.fillText(
+            "MOMENT US • 2026",
+            width / 2,
+            photoHeight * 6 + 60
+          );
+
+          const link =
+            document.createElement("a");
+
+          link.download =
+            "moment-us-photo-strip.jpg";
+
+          link.href =
+            canvas.toDataURL(
+              "image/jpeg",
+              0.92
+            );
+
+          link.click();
+
+        }
+
+      };
+
+      img.src = photo;
+
+    }
+
   );
 
 };
 
 
-/* ================= START AGAIN ================= */
+/* =====================================================
+   START AGAIN
+===================================================== */
 
 window.startAgain = function(){
 
   if(stream){
 
-    stream.getTracks().forEach(
-      track=>track.stop()
-    );
+    stream
+      .getTracks()
+      .forEach(track => track.stop());
 
     stream = null;
 
   }
 
+  cameraStarted = false;
+
   photoNumber = 1;
+
   selectedStrips = 1;
+
+  capturedPhotos = [];
+
+  capturedMotion = [];
+
+  pendingPhoto = null;
+
+  roomCode = "";
+
+  role = "";
+
+  updatePhotoCounter();
 
   showScreen("landing");
 
 };
+
+
+/* =====================================================
+   INITIAL
+===================================================== */
+
+updatePhotoCounter();
 
 </script>
 
