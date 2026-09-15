@@ -1,976 +1,908 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moment Us Photo Booth</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moment Us Photo Booth</title>
 
-<style>
-* {
-  box-sizing: border-box;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f8f4ef;
-  color: #171717;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background: #fffaf7;
+      color: #171717;
+      min-height: 100vh;
+    }
 
-button {
-  border: none;
-  cursor: pointer;
-  font: inherit;
-}
+    header {
+      padding: 22px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
 
-header {
-  padding: 22px 6%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+    .logo {
+      font-size: 21px;
+      font-weight: 800;
+    }
 
-.logo {
-  font-weight: 800;
-  font-size: 20px;
-}
+    .logo span {
+      color: #e75480;
+    }
 
-.header-btn {
-  background: #171717;
-  color: white;
-  padding: 11px 18px;
-  border-radius: 25px;
-}
+    .hero {
+      min-height: 78vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 50px 20px;
+    }
 
-.hero {
-  text-align: center;
-  padding: 70px 20px 50px;
-}
+    .hero-content {
+      max-width: 700px;
+    }
 
-.hero h1 {
-  font-size: clamp(42px, 8vw, 78px);
-  line-height: 1;
-  margin: 10px auto 20px;
-  max-width: 850px;
-}
+    .tag {
+      display: inline-block;
+      background: #fce7ef;
+      color: #c73868;
+      padding: 8px 15px;
+      border-radius: 30px;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
 
-.hero p {
-  color: #666;
-  font-size: 18px;
-  max-width: 550px;
-  margin: 0 auto 30px;
-}
+    h1 {
+      font-size: clamp(45px, 9vw, 90px);
+      line-height: .95;
+      margin-bottom: 22px;
+    }
 
-.main-btn,
-.action-btn {
-  background: #171717;
-  color: white;
-  padding: 15px 25px;
-  border-radius: 30px;
-  font-weight: bold;
-}
+    h1 span {
+      color: #e75480;
+    }
 
-.preview {
-  max-width: 900px;
-  margin: 30px auto 80px;
-  padding: 25px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
+    .hero p {
+      font-size: 19px;
+      line-height: 1.6;
+      color: #666;
+      margin-bottom: 30px;
+    }
 
-.strip {
-  background: white;
-  padding: 10px;
-  width: 170px;
-  box-shadow: 0 10px 30px #00000015;
-}
+    button {
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      border-radius: 12px;
+      padding: 14px 22px;
+      font-size: 15px;
+    }
 
-.frame {
-  height: 125px;
-  background: #eee;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 45px;
-}
+    .primary {
+      background: #171717;
+      color: white;
+    }
 
-.section {
-  max-width: 900px;
-  margin: auto;
-  padding: 60px 20px;
-  text-align: center;
-}
+    .secondary {
+      background: #eee;
+      color: #171717;
+    }
 
-.section h2 {
-  font-size: 36px;
-}
+    .danger {
+      background: #fce7ef;
+      color: #c73868;
+    }
 
-.steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  margin-top: 30px;
-}
+    button:hover {
+      transform: translateY(-1px);
+    }
 
-.step {
-  background: white;
-  padding: 25px 15px;
-  border-radius: 18px;
-}
+    .booth {
+      display: none;
+      max-width: 850px;
+      margin: auto;
+      padding: 40px 20px 80px;
+      text-align: center;
+    }
 
-.step-number {
-  font-size: 25px;
-  font-weight: bold;
-}
+    .booth h2 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
 
-.booth {
-  display: none;
-  max-width: 1000px;
-  margin: auto;
-  padding: 20px;
-}
+    .subtitle {
+      color: #777;
+      margin-bottom: 30px;
+    }
 
-.booth-top {
-  text-align: center;
-  margin-bottom: 25px;
-}
+    .card {
+      background: white;
+      border: 1px solid #eee;
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.06);
+    }
 
-.booth-top h2 {
-  font-size: 32px;
-  margin-bottom: 5px;
-}
+    .room-code {
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: 7px;
+      margin: 20px 0;
+    }
 
-.booth-top p {
-  color: #777;
-}
+    input {
+      width: 100%;
+      max-width: 350px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 18px;
+      text-align: center;
+      margin: 10px 0;
+      text-transform: uppercase;
+    }
 
-.room-box {
-  background: white;
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-}
+    video {
+      width: 100%;
+      max-width: 600px;
+      background: #111;
+      border-radius: 20px;
+      margin: 20px auto;
+      display: none;
+      transform: scaleX(-1);
+    }
 
-.room-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin: 15px 0;
-}
+    canvas {
+      display: none;
+    }
 
-.room-input {
-  padding: 13px;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  width: 180px;
-  text-align: center;
-  text-transform: uppercase;
-}
+    .countdown {
+      font-size: 100px;
+      font-weight: 900;
+      margin: 30px 0;
+    }
 
-.camera-box {
-  background: #111;
-  border-radius: 25px;
-  overflow: hidden;
-  max-width: 750px;
-  margin: auto;
-  position: relative;
-}
+    .photo-preview {
+      max-width: 500px;
+      width: 100%;
+      border-radius: 15px;
+      margin: 20px auto;
+      display: block;
+    }
 
-video {
-  width: 100%;
-  display: block;
-  min-height: 300px;
-  object-fit: cover;
-  transform: scaleX(-1);
-}
+    .button-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
 
-.camera-message {
-  color: white;
-  padding: 35px 20px;
-  text-align: center;
-}
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 25px 0;
+    }
 
-.countdown {
-  position: absolute;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 110px;
-  font-weight: bold;
-  background: #00000040;
-}
+    .photos img {
+      width: 100%;
+      border-radius: 8px;
+    }
 
-.booth-controls {
-  text-align: center;
-  padding: 25px 10px;
-}
+    .status {
+      margin: 15px 0;
+      color: #777;
+      min-height: 22px;
+    }
 
-.status {
-  font-weight: bold;
-  margin-bottom: 15px;
-}
+    .strip {
+      background: white;
+      width: 190px;
+      padding: 10px;
+      margin: 25px auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,.12);
+    }
 
-.review {
-  display: none;
-  text-align: center;
-  margin-top: 20px;
-}
+    .strip img {
+      width: 100%;
+      display: block;
+      margin-bottom: 8px;
+    }
 
-.review img {
-  max-width: 500px;
-  width: 100%;
-  border-radius: 15px;
-}
+    footer {
+      text-align: center;
+      color: #999;
+      padding: 30px;
+      font-size: 13px;
+    }
 
-.review-buttons {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
+    @media(max-width:600px) {
+      .card {
+        padding: 20px 15px;
+      }
 
-.retake {
-  background: white;
-  color: #171717;
-  border: 1px solid #ddd;
-  padding: 14px 25px;
-  border-radius: 30px;
-}
+      .booth h2 {
+        font-size: 30px;
+      }
 
-.keep {
-  background: #171717;
-  color: white;
-  padding: 14px 25px;
-  border-radius: 30px;
-}
-
-.result {
-  display: none;
-  text-align: center;
-  padding: 40px 10px;
-}
-
-.final-strip {
-  background: white;
-  padding: 12px;
-  width: 280px;
-  margin: 25px auto;
-  box-shadow: 0 15px 35px #0002;
-}
-
-.final-photo {
-  width: 100%;
-  height: 170px;
-  object-fit: cover;
-  display: block;
-  margin-bottom: 7px;
-}
-
-.strip-choice {
-  margin: 20px 0;
-}
-
-.choice-btn {
-  padding: 10px 18px;
-  border-radius: 20px;
-  background: white;
-  border: 1px solid #ddd;
-  margin: 5px;
-}
-
-.choice-btn.active {
-  background: #171717;
-  color: white;
-}
-
-footer {
-  text-align: center;
-  padding: 40px 20px;
-  color: #888;
-}
-
-@media(max-width:700px) {
-  .steps {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .preview {
-    transform: scale(.85);
-    margin-top: 0;
-  }
-
-  .strip {
-    width: 135px;
-  }
-
-  .frame {
-    height: 100px;
-  }
-}
-
-@media(max-width:480px) {
-  .hero {
-    padding-top: 45px;
-  }
-
-  .hero h1 {
-    font-size: 48px;
-  }
-
-  .preview {
-    gap: 8px;
-  }
-
-  .strip {
-    width: 125px;
-  }
-
-  .frame {
-    height: 90px;
-  }
-
-  video {
-    min-height: 250px;
-  }
-}
-</style>
+      .photos {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">Moment Us. 📸</div>
-  <button class="header-btn" onclick="openBooth()">Create a moment</button>
+  <div class="logo">Moment <span>Us</span> 📸</div>
 </header>
 
-<main id="landing">
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="tag">A virtual photo booth</div>
 
-<section class="hero">
-  <p>For the people who can't be in the same place.</p>
+    <h1>Miles apart.<br><span>One moment.</span></h1>
 
-  <h1>Miles apart.<br>One moment.</h1>
+    <p>
+      Take photos together even when you're not together.
+      Friends, siblings, couples — anyone can create a moment.
+    </p>
 
-  <p>
-    A virtual photo booth for couples, friends, siblings
-    and anyone who wants to create a memory together.
-  </p>
-
-  <button class="main-btn" onclick="openBooth()">
-    CREATE A MOMENT
-  </button>
-</section>
-
-<div class="preview">
-
-  <div class="strip">
-    <div class="frame">😊</div>
-    <div class="frame">😂</div>
-    <div class="frame">❤️</div>
-    <div class="frame">📸</div>
-  </div>
-
-  <div class="strip">
-    <div class="frame">😎</div>
-    <div class="frame">❤️</div>
-    <div class="frame">😂</div>
-    <div class="frame">✨</div>
-  </div>
-
-</div>
-
-<section class="section">
-  <h2>Not just a photo.<br>It's a moment.</h2>
-
-  <div class="steps">
-
-    <div class="step">
-      <div class="step-number">01</div>
-      <h3>Connect</h3>
-      <p>Join the same photo booth session.</p>
-    </div>
-
-    <div class="step">
-      <div class="step-number">02</div>
-      <h3>Pose</h3>
-      <p>Get ready for your photo.</p>
-    </div>
-
-    <div class="step">
-      <div class="step-number">03</div>
-      <h3>Capture</h3>
-      <p>The countdown starts.</p>
-    </div>
-
-    <div class="step">
-      <div class="step-number">04</div>
-      <h3>Keep it</h3>
-      <p>Build your photo strip together.</p>
-    </div>
-
+    <button class="primary" onclick="openBooth()">
+      CREATE A MOMENT — KSh 10
+    </button>
   </div>
 </section>
-
-</main>
-
-
-<!-- PHOTO BOOTH -->
 
 <section class="booth" id="booth">
 
-  <div class="booth-top">
-    <h2>Moment Us 📸</h2>
-    <p>Your photo booth session</p>
-  </div>
+  <h2>Let's create a moment 📸</h2>
+  <p class="subtitle">Connect with someone and take your photos together.</p>
 
-  <div class="room-box">
+  <div class="card" id="roomScreen">
 
-    <h3>Connect with your person</h3>
+    <h3>Create a room</h3>
 
-    <p id="roomStatus">
-      Create a room or enter a room code.
-    </p>
+    <button class="primary" onclick="createRoom()">
+      CREATE ROOM
+    </button>
 
-    <div class="room-buttons">
+    <p style="margin:25px 0;">or</p>
 
-      <button class="action-btn" onclick="createRoom()">
-        Create Room
-      </button>
+    <h3>Join a room</h3>
 
-      <input
-        id="roomInput"
-        class="room-input"
-        maxlength="6"
-        placeholder="ROOM CODE"
-      >
+    <input
+      id="joinCode"
+      maxlength="6"
+      placeholder="ENTER CODE"
+    >
 
-      <button class="action-btn" onclick="joinRoom()">
-        Join Room
-      </button>
+    <br>
 
-    </div>
+    <button class="secondary" onclick="joinRoom()">
+      JOIN ROOM
+    </button>
 
-    <strong id="roomCode"></strong>
+    <div class="status" id="roomStatus"></div>
 
   </div>
 
+  <div class="card" id="cameraScreen" style="display:none;">
 
-  <div class="camera-box">
+    <h3 id="cameraTitle">Waiting for your partner...</h3>
 
-    <video id="camera" autoplay playsinline muted></video>
+    <div class="room-code" id="displayCode"></div>
 
-    <div id="cameraMessage" class="camera-message">
-      Camera is not started yet.
+    <div class="status" id="connectionStatus">
+      Waiting for both people...
     </div>
 
-    <div id="countdown" class="countdown"></div>
+    <video id="video" autoplay playsinline></video>
 
-  </div>
+    <canvas id="canvas"></canvas>
 
-
-  <div class="booth-controls">
-
-    <div class="status" id="photoStatus">
-      Photo 1 of 6
-    </div>
-
-    <button
-      id="cameraButton"
-      class="action-btn"
-      onclick="startCamera()">
+    <button class="primary" id="cameraButton" onclick="startCamera()">
       START CAMERA
     </button>
 
-    <br><br>
+    <div id="countdown" class="countdown"></div>
 
-    <button
-      id="captureButton"
-      class="action-btn"
-      onclick="startCountdown()"
-      disabled>
-      TAKE PHOTO
-    </button>
-
-  </div>
-
-
-  <div class="review" id="review">
-
-    <h3>Do you want to keep this photo?</h3>
-
-    <img id="reviewImage">
-
-    <div class="review-buttons">
-
-      <button class="retake" onclick="retakePhoto()">
-        RETAKE
+    <div id="captureControls" style="display:none;">
+      <button class="primary" onclick="startCountdown()">
+        TAKE PHOTO
       </button>
-
-      <button class="keep" onclick="keepPhoto()">
-        KEEP ✓
-      </button>
-
     </div>
 
   </div>
 
+  <div class="card" id="reviewScreen" style="display:none;">
 
-  <div class="result" id="result">
+    <h3>Do you like this photo?</h3>
 
-    <h2>Your Moment is ready! 📸</h2>
+    <img id="photoPreview" class="photo-preview">
 
-    <p>Six photos. One memory.</p>
+    <div class="button-row">
+      <button class="danger" onclick="retakePhoto()">RETAKE</button>
+      <button class="primary" onclick="keepPhoto()">KEEP ✓</button>
+    </div>
 
-    <div class="strip-choice">
+    <div class="status" id="reviewStatus"></div>
 
-      <p><strong>How many strips?</strong></p>
+  </div>
 
-      <button
-        id="oneStrip"
-        class="choice-btn active"
-        onclick="chooseStrip(1)">
+  <div class="card" id="finalScreen" style="display:none;">
+
+    <h3>Your moment is complete! 🎞️</h3>
+
+    <p class="subtitle">
+      You captured all 6 photos.
+    </p>
+
+    <div class="photos" id="photoGrid"></div>
+
+    <h3>How many strips?</h3>
+
+    <div class="button-row">
+      <button class="secondary" onclick="showStrip(1)">
         1 STRIP
       </button>
 
-      <button
-        id="twoStrips"
-        class="choice-btn"
-        onclick="chooseStrip(2)">
+      <button class="primary" onclick="showStrip(2)">
         2 STRIPS
       </button>
-
     </div>
 
-    <div id="finalStrip" class="final-strip"></div>
+    <div id="stripResult"></div>
 
-    <button class="action-btn" onclick="downloadStrip()">
-      DOWNLOAD STRIP
-    </button>
+    <div class="button-row">
+      <button class="primary" onclick="downloadStrip()">
+        DOWNLOAD STRIP
+      </button>
 
-    <button class="action-btn" onclick="printStrip()">
-      PRINT
-    </button>
+      <button class="secondary" onclick="window.print()">
+        PRINT
+      </button>
 
-    <br><br>
-
-    <button class="retake" onclick="location.reload()">
-      START AGAIN
-    </button>
+      <button class="secondary" onclick="location.reload()">
+        START AGAIN
+      </button>
+    </div>
 
   </div>
 
 </section>
 
-
 <footer>
-  © 2026 Moment Us Photo Booth
+  Moment Us Photo Booth © 2026
 </footer>
 
 
-<canvas id="canvas" style="display:none;"></canvas>
+<script type="module">
+
+  /* =========================
+     FIREBASE
+  ========================= */
+
+  import {
+    initializeApp
+  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+  import {
+    getDatabase,
+    ref,
+    set,
+    get,
+    update,
+    onValue
+  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 
 
-<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDpl5yW3LYEjjwEB3U1KlTEU3iNCroaLLI",
+    authDomain: "moment-us-photo-booth.firebaseapp.com",
+    databaseURL: "https://moment-us-photo-booth-default-rtdb.firebaseio.com",
+    projectId: "moment-us-photo-booth",
+    storageBucket: "moment-us-photo-booth.firebasestorage.app",
+    messagingSenderId: "750391561895",
+    appId: "1:750391561895:web:fd8c22191f3a16d56b5582"
+  };
 
-let cameraStream = null;
-let photos = [];
-let currentPhoto = null;
-let stripCount = 1;
-
-
-/* OPEN BOOTH */
-
-function openBooth() {
-  document.getElementById("landing").style.display = "none";
-  document.getElementById("booth").style.display = "block";
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-}
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
 
 
-/* CREATE ROOM */
+  /* =========================
+     VARIABLES
+  ========================= */
 
-function createRoom() {
+  let roomCode = "";
+  let role = "";
+  let currentPhoto = 0;
+  let photos = [];
 
-  const characters = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const video = document.getElementById("video");
+  const canvas = document.getElementById("canvas");
 
-  let code = "";
 
-  for (let i = 0; i < 6; i++) {
-    code += characters.charAt(
-      Math.floor(Math.random() * characters.length)
+  /* =========================
+     OPEN BOOTH
+  ========================= */
+
+  window.openBooth = function() {
+
+    document.getElementById("home").style.display = "none";
+    document.getElementById("booth").style.display = "block";
+
+    window.scrollTo(0,0);
+  };
+
+
+  /* =========================
+     GENERATE ROOM CODE
+  ========================= */
+
+  function generateCode() {
+
+    const characters = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+    let code = "";
+
+    for(let i = 0; i < 6; i++) {
+      code += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+    }
+
+    return code;
+  }
+
+
+  /* =========================
+     CREATE ROOM
+  ========================= */
+
+  window.createRoom = async function() {
+
+    roomCode = generateCode();
+    role = "host";
+
+    const roomRef = ref(
+      database,
+      "rooms/" + roomCode
     );
+
+    await set(roomRef, {
+      host: true,
+      guest: false,
+      status: "waiting",
+      createdAt: Date.now()
+    });
+
+    showCameraScreen();
+
+    document.getElementById("displayCode").textContent = roomCode;
+
+    document.getElementById("connectionStatus").textContent =
+      "Send this code to the person you want to take photos with.";
+
+    listenToRoom();
+  };
+
+
+  /* =========================
+     JOIN ROOM
+  ========================= */
+
+  window.joinRoom = async function() {
+
+    const input =
+      document.getElementById("joinCode").value
+      .trim()
+      .toUpperCase();
+
+    if(input.length !== 6) {
+
+      document.getElementById("roomStatus").textContent =
+        "Please enter a 6-character room code.";
+
+      return;
+    }
+
+    const roomRef = ref(
+      database,
+      "rooms/" + input
+    );
+
+    const snapshot = await get(roomRef);
+
+    if(!snapshot.exists()) {
+
+      document.getElementById("roomStatus").textContent =
+        "Room not found. Check the code and try again.";
+
+      return;
+    }
+
+    const room = snapshot.val();
+
+    if(room.guest === true) {
+
+      document.getElementById("roomStatus").textContent =
+        "This room already has two people.";
+
+      return;
+    }
+
+    roomCode = input;
+    role = "guest";
+
+    await update(roomRef, {
+      guest: true,
+      status: "connected"
+    });
+
+    showCameraScreen();
+
+    document.getElementById("displayCode").textContent = roomCode;
+
+    document.getElementById("connectionStatus").textContent =
+      "Connected! Both people are in the room.";
+
+    listenToRoom();
+  };
+
+
+  /* =========================
+     LISTEN TO ROOM
+  ========================= */
+
+  function listenToRoom() {
+
+    const roomRef = ref(
+      database,
+      "rooms/" + roomCode
+    );
+
+    onValue(roomRef, (snapshot) => {
+
+      if(!snapshot.exists()) return;
+
+      const room = snapshot.val();
+
+      if(room.host === true && room.guest === true) {
+
+        document.getElementById("connectionStatus").textContent =
+          "Both people are connected! 🎉";
+
+        document.getElementById("cameraTitle").textContent =
+          "You're ready!";
+
+        document.getElementById("captureControls").style.display =
+          "block";
+
+      }
+
+    });
   }
 
-  document.getElementById("roomCode").textContent =
-    "ROOM CODE: " + code;
 
-  document.getElementById("roomStatus").textContent =
-    "Room created. Share this code with your person.";
+  /* =========================
+     CAMERA SCREEN
+  ========================= */
 
-}
+  function showCameraScreen() {
 
+    document.getElementById("roomScreen").style.display = "none";
 
-/* JOIN ROOM */
-
-function joinRoom() {
-
-  const code =
-    document.getElementById("roomInput").value
-    .trim()
-    .toUpperCase();
-
-  if (code.length !== 6) {
-
-    document.getElementById("roomStatus").textContent =
-      "Please enter a 6-character room code.";
-
-    return;
+    document.getElementById("cameraScreen").style.display = "block";
   }
 
-  document.getElementById("roomCode").textContent =
-    "ROOM CODE: " + code;
 
-  document.getElementById("roomStatus").textContent =
-    "Room code accepted. Device-to-device connection will be added next.";
+  /* =========================
+     START CAMERA
+  ========================= */
 
-}
+  window.startCamera = async function() {
+
+    try {
+
+      const stream =
+        await navigator.mediaDevices.getUserMedia({
+          video: {
+            facingMode: "user"
+          },
+          audio: false
+        });
+
+      video.srcObject = stream;
+
+      video.style.display = "block";
+
+      document.getElementById("cameraButton").style.display =
+        "none";
+
+      document.getElementById("connectionStatus").textContent =
+        "Camera ready 📸";
+
+    } catch(error) {
+
+      alert(
+        "Camera access was blocked. Please allow camera permission in your browser and try again."
+      );
+
+    }
+  };
 
 
-/* START CAMERA */
+  /* =========================
+     COUNTDOWN
+  ========================= */
 
-async function startCamera() {
+  window.startCountdown = function() {
 
-  try {
+    let number = 3;
 
-    cameraStream =
-      await navigator.mediaDevices.getUserMedia({
-        video: {
-          facingMode: "user"
-        },
-        audio: false
-      });
+    const countdown =
+      document.getElementById("countdown");
 
-    const video =
-      document.getElementById("camera");
-
-    video.srcObject = cameraStream;
-
-    document.getElementById("cameraMessage").style.display =
+    document.getElementById("captureControls").style.display =
       "none";
 
-    document.getElementById("cameraButton").textContent =
-      "CAMERA READY ✓";
+    countdown.textContent = number;
 
-    document.getElementById("captureButton").disabled =
-      false;
+    const timer = setInterval(() => {
 
-  }
+      number--;
 
-  catch (error) {
+      if(number > 0) {
 
-    document.getElementById("cameraMessage").style.display =
+        countdown.textContent = number;
+
+      } else {
+
+        countdown.textContent = "📸";
+
+        clearInterval(timer);
+
+        setTimeout(() => {
+          capturePhoto();
+        }, 500);
+
+      }
+
+    }, 1000);
+  };
+
+
+  /* =========================
+     CAPTURE PHOTO
+  ========================= */
+
+  function capturePhoto() {
+
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    const context = canvas.getContext("2d");
+
+    context.translate(canvas.width, 0);
+    context.scale(-1, 1);
+
+    context.drawImage(
+      video,
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+
+    const photo =
+      canvas.toDataURL("image/jpeg", 0.9);
+
+    document.getElementById("photoPreview").src =
+      photo;
+
+    document.getElementById("cameraScreen").style.display =
+      "none";
+
+    document.getElementById("reviewScreen").style.display =
       "block";
 
-    document.getElementById("cameraMessage").textContent =
-      "We couldn't access your camera. Please allow camera permission in your browser.";
-
+    document.getElementById("reviewStatus").textContent =
+      "Photo " + (currentPhoto + 1) + " of 6";
   }
 
-}
+
+  /* =========================
+     RETAKE
+  ========================= */
+
+  window.retakePhoto = function() {
+
+    document.getElementById("reviewScreen").style.display =
+      "none";
+
+    document.getElementById("cameraScreen").style.display =
+      "block";
+
+    document.getElementById("countdown").textContent = "";
+
+    document.getElementById("captureControls").style.display =
+      "block";
+  };
 
 
-/* COUNTDOWN */
+  /* =========================
+     KEEP PHOTO
+  ========================= */
 
-function startCountdown() {
+  window.keepPhoto = function() {
 
-  if (!cameraStream) {
-    return;
-  }
+    const photo =
+      document.getElementById("photoPreview").src;
 
-  const countdown =
-    document.getElementById("countdown");
+    photos.push(photo);
 
-  const captureButton =
-    document.getElementById("captureButton");
+    currentPhoto++;
 
-  captureButton.disabled = true;
+    document.getElementById("reviewScreen").style.display =
+      "none";
 
-  countdown.style.display = "flex";
+    if(currentPhoto >= 6) {
 
-  let number = 3;
-
-  countdown.textContent = number;
-
-  const timer = setInterval(() => {
-
-    number--;
-
-    if (number > 0) {
-
-      countdown.textContent = number;
+      showFinalScreen();
 
     } else {
 
-      clearInterval(timer);
+      document.getElementById("cameraScreen").style.display =
+        "block";
 
-      countdown.textContent = "📸";
+      document.getElementById("countdown").textContent = "";
 
-      setTimeout(() => {
+      document.getElementById("captureControls").style.display =
+        "block";
 
-        takePhoto();
-
-        countdown.style.display = "none";
-
-      }, 500);
-
+      document.getElementById("connectionStatus").textContent =
+        "Photo " + (currentPhoto + 1) + " of 6";
     }
-
-  }, 1000);
-
-}
+  };
 
 
-/* TAKE PHOTO */
+  /* =========================
+     FINAL SCREEN
+  ========================= */
 
-function takePhoto() {
+  function showFinalScreen() {
 
-  const video =
-    document.getElementById("camera");
+    document.getElementById("finalScreen").style.display =
+      "block";
 
-  const canvas =
-    document.getElementById("canvas");
+    const grid =
+      document.getElementById("photoGrid");
 
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
+    grid.innerHTML = "";
 
-  const context =
-    canvas.getContext("2d");
+    photos.forEach(photo => {
 
-  context.translate(canvas.width, 0);
-  context.scale(-1, 1);
+      const image =
+        document.createElement("img");
 
-  context.drawImage(
-    video,
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
+      image.src = photo;
 
-  currentPhoto =
-    canvas.toDataURL("image/jpeg", 0.9);
+      grid.appendChild(image);
 
-  document.getElementById("reviewImage").src =
-    currentPhoto;
-
-  document.getElementById("review").style.display =
-    "block";
-
-}
-
-
-/* RETAKE */
-
-function retakePhoto() {
-
-  currentPhoto = null;
-
-  document.getElementById("review").style.display =
-    "none";
-
-  document.getElementById("captureButton").disabled =
-    false;
-
-}
-
-
-/* KEEP */
-
-function keepPhoto() {
-
-  photos.push(currentPhoto);
-
-  document.getElementById("review").style.display =
-    "none";
-
-  currentPhoto = null;
-
-  if (photos.length < 6) {
-
-    document.getElementById("photoStatus").textContent =
-      "Photo " + (photos.length + 1) + " of 6";
-
-    document.getElementById("captureButton").disabled =
-      false;
-
-  } else {
-
-    finishSession();
-
+    });
   }
 
-}
+
+  /* =========================
+     SHOW STRIP
+  ========================= */
+
+  window.showStrip = function(number) {
+
+    const result =
+      document.getElementById("stripResult");
+
+    result.innerHTML = "";
+
+    const strip =
+      document.createElement("div");
+
+    strip.className = "strip";
+
+    photos.forEach(photo => {
+
+      const image =
+        document.createElement("img");
+
+      image.src = photo;
+
+      strip.appendChild(image);
+
+    });
+
+    result.appendChild(strip);
+
+    if(number === 2) {
+
+      const text =
+        document.createElement("p");
+
+      text.textContent =
+        "Two identical strips will be included when downloaded.";
+
+      text.style.color = "#777";
+
+      result.appendChild(text);
+    }
+  };
 
 
-/* FINISH SESSION */
+  /* =========================
+     DOWNLOAD STRIP
+  ========================= */
 
-function finishSession() {
+  window.downloadStrip = function() {
 
-  if (cameraStream) {
+    const stripWidth = 600;
+    const photoHeight = 350;
+    const padding = 25;
 
-    cameraStream.getTracks().forEach(
-      track => track.stop()
+    const stripHeight =
+      padding +
+      (photos.length * photoHeight) +
+      padding;
+
+    const output =
+      document.createElement("canvas");
+
+    output.width = stripWidth;
+    output.height = stripHeight;
+
+    const ctx =
+      output.getContext("2d");
+
+    ctx.fillStyle = "white";
+    ctx.fillRect(
+      0,
+      0,
+      output.width,
+      output.height
     );
 
-  }
-
-  document.querySelector(".camera-box").style.display =
-    "none";
-
-  document.querySelector(".booth-controls").style.display =
-    "none";
-
-  document.querySelector(".room-box").style.display =
-    "none";
-
-  document.getElementById("result").style.display =
-    "block";
-
-  showStrip();
-
-}
-
-
-/* CHOOSE STRIP COUNT */
-
-function chooseStrip(number) {
-
-  stripCount = number;
-
-  document
-    .getElementById("oneStrip")
-    .classList.remove("active");
-
-  document
-    .getElementById("twoStrips")
-    .classList.remove("active");
-
-  if (number === 1) {
-
-    document
-      .getElementById("oneStrip")
-      .classList.add("active");
-
-  } else {
-
-    document
-      .getElementById("twoStrips")
-      .classList.add("active");
-
-  }
-
-  showStrip();
-
-}
-
-
-/* SHOW STRIP */
-
-function showStrip() {
-
-  const container =
-    document.getElementById("finalStrip");
-
-  container.innerHTML = "";
-
-  for (let i = 0; i < photos.length; i++) {
-
-    const img =
-      document.createElement("img");
-
-    img.src = photos[i];
-
-    img.className = "final-photo";
-
-    container.appendChild(img);
-
-  }
-
-}
-
-
-/* DOWNLOAD STRIP */
-
-function downloadStrip() {
-
-  const width = 600;
-  const photoHeight = 400;
-  const padding = 20;
-
-  const stripHeight =
-    padding +
-    (photoHeight * photos.length) +
-    (10 * photos.length) +
-    padding;
-
-  const canvas =
-    document.createElement("canvas");
-
-  canvas.width =
-    stripCount === 2
-      ? width * 2 + 30
-      : width;
-
-  canvas.height =
-    stripHeight;
-
-  const ctx =
-    canvas.getContext("2d");
-
-  ctx.fillStyle = "#ffffff";
-
-  ctx.fillRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-  let xPositions =
-    stripCount === 2
-      ? [0, width + 30]
-      : [0];
-
-  xPositions.forEach(x => {
+    let loaded = 0;
 
     photos.forEach((photo, index) => {
 
-      const img =
-        new Image();
+      const image = new Image();
 
-      img.onload = function() {
+      image.onload = function() {
+
+        const y =
+          padding +
+          (index * photoHeight);
 
         ctx.drawImage(
-          img,
-          x + padding,
-          padding + index * (photoHeight + 10),
-          width - padding * 2,
+          image,
+          0,
+          y,
+          stripWidth,
           photoHeight
         );
 
-        if (
-          index === photos.length - 1 &&
-          x === xPositions[xPositions.length - 1]
-        ) {
+        loaded++;
+
+        if(loaded === photos.length) {
 
           const link =
             document.createElement("a");
@@ -979,95 +911,16 @@ function downloadStrip() {
             "moment-us-photo-strip.png";
 
           link.href =
-            canvas.toDataURL("image/png");
+            output.toDataURL("image/png");
 
           link.click();
-
         }
-
       };
 
-      img.src = photo;
+      image.src = photo;
 
     });
-
-  });
-
-}
-
-
-/* PRINT */
-
-function printStrip() {
-
-  const images =
-    photos.map(photo =>
-      `<img src="${photo}" style="width:100%;display:block;margin-bottom:8px;">`
-    ).join("");
-
-  const printWindow =
-    window.open("", "_blank");
-
-  if (!printWindow) {
-
-    alert(
-      "Please allow pop-ups to print your photo strip."
-    );
-
-    return;
-
-  }
-
-  printWindow.document.write(`
-    <html>
-      <head>
-        <title>Moment Us Photo Strip</title>
-
-        <style>
-          body {
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-          }
-
-          .strip {
-            width: 280px;
-            margin: auto;
-            padding: 12px;
-            background: white;
-          }
-
-          img {
-            width: 100%;
-          }
-
-          @media print {
-            body {
-              padding: 0;
-            }
-          }
-        </style>
-      </head>
-
-      <body>
-
-        <div class="strip">
-          ${images}
-        </div>
-
-        <script>
-          window.onload = function() {
-            window.print();
-          }
-        <\/script>
-
-      </body>
-    </html>
-  `);
-
-  printWindow.document.close();
-
-}
+  };
 
 </script>
 
