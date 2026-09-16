@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1077,7 +1077,7 @@ input{
 
           <br>
 
-          <button class="primary" id="createRoomBtn">
+        <button class="primary" id="createRoomBtn" onclick="openMpesaModal()">
             CREATE ROOM
           </button>
 
@@ -4863,5 +4863,99 @@ document
 
 </script>
 
+ <!-- M-Pesa Payment Modal -->
+<div id="mpesaModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;">
+  <div style="background:#fff; padding:25px; border-radius:12px; max-width:350px; width:90%; text-align:center; color:#333; font-family:sans-serif;">
+    <h3 style="margin-top:0;">Start Photo Booth Session</h3>
+    <p style="font-size:14px; color:#666;">Pay KSh 10 via M-Pesa to automatically create your room.</p>
+    
+    <input type="tel" id="mpesaPhone" placeholder="07XXXXXXXX or 2547XXXXXXXX" style="width:100%; padding:10px; margin:15px 0; border:1px solid #ccc; border-radius:6px; font-size:16px; text-align:center; box-sizing:border-box;">
+    
+    <button id="payBtn" onclick="initiateMpesaPayment()" style="width:100%; padding:12px; background:#28a745; color:white; border:none; border-radius:6px; font-size:16px; font-weight:bold; cursor:pointer;">Pay KSh 10 with M-Pesa</button>
+    <button onclick="closeMpesaModal()" style="width:100%; padding:8px; background:transparent; color:#888; border:none; margin-top:10px; cursor:pointer;">Cancel</button>
+    
+    <p id="mpesaStatus" style="margin-top:15px; font-size:13px; font-weight:bold; color:#d9534f;"></p>
+  </div>
+</div>
+
+<script>
+const WORKER_URL = "https://moment-us-mpesa.akadra709.workers.dev";
+const FIREBASE_DB = "https://moment-us-photo-booth-default-rtdb.firebaseio.com";
+
+function openMpesaModal() {
+  document.getElementById("mpesaModal").style.display = "flex";
+  document.getElementById("mpesaStatus").innerText = "";
+}
+
+function closeMpesaModal() {
+  document.getElementById("mpesaModal").style.display = "none";
+}
+
+async function initiateMpesaPayment() {
+  const phoneInput = document.getElementById("mpesaPhone").value;
+  const statusTxt = document.getElementById("mpesaStatus");
+  const payBtn = document.getElementById("payBtn");
+
+  if (!phoneInput) {
+    statusTxt.innerText = "Please enter your phone number.";
+    return;
+  }
+
+  statusTxt.style.color = "#0275d8";
+  statusTxt.innerText = "Sending M-Pesa prompt to your phone...";
+  payBtn.disabled = true;
+
+  try {
+    const res = await fetch(`${WORKER_URL}/mpesa/stkpush`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phone: phoneInput })
+    });
+
+    const data = await res.json();
+
+    if (data.ResponseCode === "0") {
+      statusTxt.innerText = "Prompt sent! Enter your M-Pesa PIN on your phone.";
+      pollPaymentStatus(data.CheckoutRequestID);
+    } else {
+      statusTxt.style.color = "#d9534f";
+      statusTxt.innerText = data.errorMessage || "Failed to initiate payment.";
+      payBtn.disabled = false;
+    }
+  } catch (err) {
+    statusTxt.style.color = "#d9534f";
+    statusTxt.innerText = "Connection error. Please try again.";
+    payBtn.disabled = false;
+  }
+}
+
+function pollPaymentStatus(checkoutID) {
+  const statusTxt = document.getElementById("mpesaStatus");
+  
+  const timer = setInterval(async () => {
+    try {
+      const res = await fetch(`${FIREBASE_DB}/payments/${checkoutID}.json`);
+      const data = await res.json();
+
+      if (data && data.status === "SUCCESS") {
+        clearInterval(timer);
+        statusTxt.style.color = "#28a745";
+        statusTxt.innerText = "Payment Received! Creating room...";
+        
+        setTimeout(() => {
+          closeMpesaModal();
+          if (typeof joinRoom === "function") {
+            joinRoom(data.roomCode);
+          } else {
+            alert(`Room Created! Share Code: ${data.roomCode}`);
+          }
+        }, 1500);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }, 3000);
+}
+</script> 
 </body>
 </html>
