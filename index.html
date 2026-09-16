@@ -4944,8 +4944,9 @@ function pollPaymentStatus(checkoutID) {
         
         setTimeout(() => {
           closeMpesaModal();
-          if (typeof joinRoom === "function") {
-            joinRoom(data.roomCode);
+if (typeof createRoom === "function") {
+    createRoom(data.roomCode);
+          
           } else {
             alert(`Room Created! Share Code: ${data.roomCode}`);
           }
