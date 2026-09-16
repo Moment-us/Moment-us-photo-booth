@@ -1940,6 +1940,7 @@ document
    openMpesaModal();
 return;   
 
+      
       role = "host";
 
       roomCode =
@@ -4950,7 +4951,16 @@ if (typeof createRoom === "function") {
     createRoom(data.roomCode);
           
           } else {
-            alert(`Room Created! Share Code: ${data.roomCode}`);
+closeMpesaModal();
+if (typeof joinRoom === "function") {
+  document.getElementById("roomCodeInput").value = data.roomCode;
+  joinRoom(data.roomCode);
+} else {
+  navigator.clipboard.writeText(data.roomCode);
+  alert("Room Created! Share code copied to clipboard: " + data.roomCode);
+}
+
+  
           }
         }, 1500);
       }
